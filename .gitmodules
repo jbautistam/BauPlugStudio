@@ -1,0 +1,60 @@
+[submodule "Modules/Controls/BauControls"]
+	path = Modules/Controls/BauControls
+	url = https://github.com/jbautistam/BauControls
+[submodule "Modules/Libraries/LibHelper"]
+	path = Modules/Libraries/LibHelper
+	url = https://github.com/jbautistam/LibHelper
+[submodule "Modules/Libraries/LibMarkup"]
+	path = Modules/Libraries/LibMarkup
+	url = https://github.com/jbautistam/LibMarkup
+[submodule "Modules/Libraries/Common/LibHelper"]
+	path = Modules/Libraries/Common/LibHelper
+	url = https://github.com/jbautistam/LibHelper
+[submodule "Modules/Libraries/Common/LibMarkup"]
+	path = Modules/Libraries/Common/LibMarkup
+	url = https://github.com/jbautistam/LibMarkup
+[submodule "Modules/Libraries/Common/LibDataStructures"]
+	path = Modules/Libraries/Common/LibDataStructures
+	url = https://github.com/jbautistam/LibDataStructures
+[submodule "Modules/Libraries/Architecture/BauMvvm"]
+	path = Modules/Libraries/Architecture/BauMvvm
+	url = https://github.com/jbautistam/BauMvvm
+[submodule "Modules/Controls/BauMvvmControls"]
+	path = Modules/Controls/BauMvvmControls
+	url = https://github.com/jbautistam/BauMvvmControls
+[submodule "Modules/Libraries/Common/LibSystem.Windows"]
+	path = Modules/Libraries/Common/LibSystem.Windows
+	url = https://github.com/jbautistam/LibSystem.Windows
+[submodule "Modules/Libraries/Architecture/Plugins"]
+	path = Modules/Libraries/Architecture/Plugins
+	url = https://github.com/jbautistam/Plugins
+[submodule "Modules/Controls/CodeEditor"]
+	path = Modules/Controls/CodeEditor
+	url = https://github.com/jbautistam/CodeEditor
+[submodule "Modules/Libraries/Communications/LibFeeds"]
+	path = Modules/Libraries/Communications/LibFeeds
+	url = https://github.com/jbautistam/LibFeeds
+[submodule "Modules/Libraries/Communications/LibXmpp"]
+	path = Modules/Libraries/Communications/LibXmpp
+	url = https://github.com/jbautistam/LibXmpp
+[submodule "Modules/Libraries/Communications/SharpXmpp"]
+	path = Modules/Libraries/Communications/SharpXmpp
+	url = https://github.com/pgstath/Sharp.Xmpp
+[submodule "Modules/Libraries/Formats/eBooks"]
+	path = Modules/Libraries/Formats/eBooks
+	url = https://github.com/jbautistam/eBooks
+[submodule "Modules/Libraries/Common/LibCompressor"]
+	path = Modules/Libraries/Common/LibCompressor
+	url = https://github.com/jbautistam/LibCompressor
+[submodule "Modules/Libraries/Communications/LibFtpClient"]
+	path = Modules/Libraries/Communications/LibFtpClient
+	url = https://github.com/jbautistam/LibFtpClient
+[submodule "Modules/Libraries/Graphics/ImageFilters"]
+	path = Modules/Libraries/Graphics/ImageFilters
+	url = https://github.com/jbautistam/ImageFilters
+[submodule "Modules/Libraries/Compilers"]
+	path = Modules/Libraries/Compilers
+	url = https://github.com/jbautistam/Compilers
+[submodule "Modules/Libraries/DataBase"]
+	path = Modules/Libraries/DataBase
+	url = https://github.com/jbautistam/DataBase
