@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<DbScript>
+	<!--
+	<Import FileName = "Images\Image.jpg" />
+	-->
+	<Execute Provider = "NorthWind">
+		<Command>
+			<Sentence>
+				DROP TABLE IF EXISTS ProductTotals
+			</Sentence>
+		</Command>
+	</Execute>
+	
+	<Execute Provider = "NorthWind">
+		<Command>
+			<Sentence>
+				CREATE TABLE ProductTotals
+					(Total REAL)
+			</Sentence>
+		</Command>
+		<EmptyData>
+			<Exception>
+				No se pudo crear ProductTotals
+			</Exception>
+		</EmptyData>
+	</Execute>
+
+	<Execute Provider = "NorthWind">
+		<Command>
+			<Sentence>
+				DROP TABLE IF EXISTS ProductsGrouped
+			</Sentence>
+		</Command>
+	</Execute>
+
+	<Execute Provider = "NorthWind">
+		<Command>
+			<Sentence>
+				CREATE TABLE ProductsGrouped
+				(
+					ProductName TEXT(2000), 
+					Price REAL
+				)
+			</Sentence>
+		</Command>
+	</Execute>
+	
+	<For Variable ="Index" Start="1" End="10" Step="2">
+		<Print>
+			Ejecutando for {{Index}}
+		</Print>
+	</For>
+	<ForEach Provider = "NorthWind">
+		<Command>
+			<Sentence>
+				SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, 
+					   Country, Phone, Fax
+					FROM Customers
+					WHERE CustomerID = @CustomerID
+			</Sentence>
+			<Argument Type="String" ParameterName="@CustomerID" Default = "ISLAT" />
+		</Command>
+		<EmptyData>
+		</EmptyData>
+		<WithData>
+			<Numeric Name = "Total" Value = "0" />
+			<ForEach Provider = "NorthWind">
+				<Command>
+					<Sentence>
+						SELECT Products.ProductName,
+								SUM([Order Details].UnitPrice * [Order Details].Quantity - [Order Details].Discount) AS Price
+							FROM Orders INNER JOIN [Order Details]
+								ON Orders.OrderID = [Order Details].OrderID
+									AND Orders.CustomerID = @CustomerID
+							INNER JOIN Products 
+								ON [Order Details].ProductID = Products.ProductID
+							GROUP BY Products.ProductName
+					</Sentence>
+					<Argument Type="String" ParameterName="@CustomerID" Variable = "CustomerID" />
+				</Command>
+				<EmptyData>
+					<Print>
+						No existe ningún dato de productos de la empresa {{CompanyName}}
+					</Print>
+				</EmptyData>
+				<WithData>
+					<Execute Provider = "NorthWind">
+						<Command>
+							<Sentence>
+								INSERT INTO ProductsGrouped (ProductName, Price)
+									VALUES ({{ProductName}}, {{Price}})
+							</Sentence>
+						</Command>
+						<EmptyData>
+							<Exception>
+								No se pudo insertar en ProductsGrouped
+							</Exception>
+						</EmptyData>
+					</Execute>
+					<Let Name = "Total">
+						{{Total}} + {{Price}}
+					</Let>
+					<Print>
+						Sumando datos. Total = {{Total}}
+					</Print>
+				</WithData>
+			</ForEach>
+			<Execute Provider = "NorthWind">
+				<Command>
+					<Sentence>
+						INSERT INTO ProductTotals (Total)
+							VALUES ({{Total}})
+					</Sentence>
+				</Command>
+				<EmptyData>
+					<Exception>
+						No se pudo insertar en ProductTotals
+					</Exception>
+				</EmptyData>
+			</Execute>
+		</WithData>
+	</ForEach>
+</DbScript>

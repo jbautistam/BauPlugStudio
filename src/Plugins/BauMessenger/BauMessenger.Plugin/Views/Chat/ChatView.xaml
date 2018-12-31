@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Bau.Plugins.BauMessenger.Views.Chat.ChatView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bau.Plugins.BauMessenger.Views.Chat"
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"  
+        mc:Ignorable="d" d:DesignWidth="164" d:DesignHeight="92">
+    <Grid x:Name="grdData">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+		<xctk:RichTextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=ChatLogRtf}" IsReadOnly="True" />
+		<TextBox Grid.Row="1" Grid.Column="0" Text="{Binding Path=MessageToSend, UpdateSourceTrigger=PropertyChanged}"/>
+		<Button Grid.Row="1" Grid.Column="1" Margin = "3" Padding="5" VerticalAlignment="Center" Command="{Binding Path=SendMessageCommand}" IsDefault="True">
+			<StackPanel Orientation="Horizontal">
+				<Image Source="/BauMessenger.Plugin;component/Resources/Download.png" Margin="1"/>
+				<TextBlock Text="Enviar"/>
+			</StackPanel>
+		</Button>
+	</Grid>
+</UserControl>

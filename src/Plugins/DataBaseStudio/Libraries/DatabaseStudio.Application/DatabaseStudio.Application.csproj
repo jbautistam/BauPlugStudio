@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Bau.Libraries.DatabaseStudio.Application</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\Common\LibDataStructures\src\LibDataStructures.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\Common\LibHelper\src\LibHelper.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\Common\LibMarkup\src\LibMarkup.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\DataBase\src\Aggregator.Providers\Aggregator.Providers.Base\Aggregator.Providers.Base.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\DataBase\src\Aggregator.Providers\Aggregator.Providers.SqLite\Aggregator.Providers.SqLite.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\DataBase\src\Aggregator.Providers\Aggregator.Providers.SqlServer\Aggregator.Providers.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\DataBase\src\DbScripts\LibDBScripts.Generator\LibDBScripts.Generator.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\DataBase\src\Reporting\LibReports\LibReports.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\DataBase\src\Reporting\ReportRenderers\LibReports.Renderer.Html\LibReports.Renderer.Html.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\DataBase\src\Reporting\ReportRenderers\LibReports.Renderer.Pdf\LibReports.Renderer.Pdf.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Modules\Libraries\DataBase\src\Reporting\ReportRenderers\LibReports.Renderer\LibReports.Renderer.csproj" />
+    <ProjectReference Include="..\DatabaseStudio.Models\DatabaseStudio.Models.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,52 @@
+﻿<UserControl xmlns:my="clr-namespace:Bau.Plugins.DocWriter.Views.UC"  x:Class="Bau.Plugins.DocWriter.Views.UC.ctlTemplates"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<Label Grid.Row="0" Grid.Column="0" Content="Predeterminada:" />
+		<my:ctlSearchPage x:Name="udtTemplateMain" Grid.Row="0" Grid.Column="1" Page="{Binding Path=Main}" Margin = "3" />
+
+		<Label Grid.Row="1" Grid.Column="0" Content="Categoría:" />
+		<my:ctlSearchPage x:Name="udtTemplateCategoryItem" Grid.Row="1" Grid.Column="1" Page="{Binding Path=CategoryItem}" Margin = "3" />
+
+		<Label Grid.Row="2" Grid.Column="0" Content="Artículo:" />
+		<my:ctlSearchPage x:Name="udtTemplateArticle" Grid.Row="2" Grid.Column="1" Page="{Binding Path=Article}" Margin = "3" />
+
+		<Label Grid.Row="3" Grid.Column="0" Content="Cabecera categorías:" />
+		<my:ctlSearchPage x:Name="udtTemplateCategoryHeader" Grid.Row="3" Grid.Column="1" Page="{Binding Path=CategoryHeader}" Margin = "3" />
+
+		<Label Grid.Row="4" Grid.Column="0" Content="Mapa del sitio:" />
+		<my:ctlSearchPage x:Name="udtTemplateSiteMap" Grid.Row="4" Grid.Column="1" Page="{Binding Path=SiteMap}" Margin = "3" />
+
+		<Label Grid.Row="5" Grid.Column="0" Content="Galería:" />
+		<my:ctlSearchPage x:Name="udtTemplateGallery" Grid.Row="5" Grid.Column="1" Page="{Binding Path=Gallery}" Margin = "3" />
+
+		<Label Grid.Row="6" Grid.Column="0" Content="Imagen:" />
+		<my:ctlSearchPage x:Name="udtTemplateGalleryImage" Grid.Row="6" Grid.Column="1" Page="{Binding Path=GalleryImage}" Margin = "3" />
+
+		<Label Grid.Row="7" Grid.Column="0" Content="Etiqueta:" />
+		<my:ctlSearchPage x:Name="udtTemplateTag" Grid.Row="7" Grid.Column="1" Page="{Binding Path=Tag}" Margin = "3" />
+
+		<Label Grid.Row="8" Grid.Column="0" Content="Noticias:" />
+		<my:ctlSearchPage x:Name="udtTemplateNews" Grid.Row="8" Grid.Column="1" Page="{Binding Path=News}" Margin = "3" />
+	</Grid>
+</UserControl>

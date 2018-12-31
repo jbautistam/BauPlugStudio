@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5DC761A6-8346-4E63-A573-2D9995C6B9F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bau.Libraries.LibMotionComic</RootNamespace>
+    <AssemblyName>LibMotionComics</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ComicManager.cs" />
+    <Compile Include="Model\ComicModel.cs" />
+    <Compile Include="Model\Components\AbstractComponentModel.cs" />
+    <Compile Include="Model\Components\Actions\ActionBaseModel.cs" />
+    <Compile Include="Model\Components\Actions\AnimationParameters.cs" />
+    <Compile Include="Model\Components\Actions\BrushLinearActionModel.cs" />
+    <Compile Include="Model\Components\Actions\BrushRadialActionModel.cs" />
+    <Compile Include="Model\Components\Actions\BrushViewBoxActionModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\BackEaseModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\BounceEaseModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\CircleEaseModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\CubicEaseModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\EaseBaseModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\ElasticEaseModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\ExponentialEaseModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\PowerEaseModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\QuadraticEaseModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\QuarticEaseModel.cs" />
+    <Compile Include="Model\Components\Actions\Eases\SineEaseModel.cs" />
+    <Compile Include="Model\Components\Actions\PathActionModel.cs" />
+    <Compile Include="Model\Components\Actions\ResizeActionModel.cs" />
+    <Compile Include="Model\Components\Actions\RotateActionModel.cs" />
+    <Compile Include="Model\Components\Actions\SetVisibilityActionModel.cs" />
+    <Compile Include="Model\Components\Actions\SetZindexModel.cs" />
+    <Compile Include="Model\Components\Actions\TimeLineModel.cs" />
+    <Compile Include="Model\Components\Actions\TranslateActionModel.cs" />
+    <Compile Include="Model\Components\Actions\ZoomActionModel.cs" />
+    <Compile Include="Model\Components\Entities\LanguageModel.cs" />
+    <Compile Include="Model\Components\Entities\PointModel.cs" />
+    <Compile Include="Model\Components\Entities\RectangleModel.cs" />
+    <Compile Include="Model\Components\PageItems\AbstractPageItemModel.cs" />
+    <Compile Include="Model\Components\PageItems\Brushes\AbstractBaseBrushModel.cs" />
+    <Compile Include="Model\Components\PageItems\Brushes\GradientStopModel.cs" />
+    <Compile Include="Model\Components\PageItems\Brushes\ImageBrushModel.cs" />
+    <Compile Include="Model\Components\PageItems\Brushes\LinearGradientBrushModel.cs" />
+    <Compile Include="Model\Components\PageItems\Brushes\RadialGradientBrushModel.cs" />
+    <Compile Include="Model\Components\PageItems\Brushes\SolidBrushModel.cs" />
+    <Compile Include="Model\Components\PageItems\ColorModel.cs" />
+    <Compile Include="Model\Components\PageItems\FigureModel.cs" />
+    <Compile Include="Model\Components\PageItems\FrameModel.cs" />
+    <Compile Include="Model\Components\PageItems\ImageModel.cs" />
+    <Compile Include="Model\Components\PageItems\PenModel.cs" />
+    <Compile Include="Model\Components\PageItems\ShapeModel.cs" />
+    <Compile Include="Model\Components\PageItems\TextContentModel.cs" />
+    <Compile Include="Model\Components\PageItems\TextContentModelCollection.cs" />
+    <Compile Include="Model\Components\PageItems\TextModel.cs" />
+    <Compile Include="Model\Components\PageModel.cs" />
+    <Compile Include="Model\Components\ResourcesDictionary.cs" />
+    <Compile Include="Model\Components\Transforms\AbstractTransformModel.cs" />
+    <Compile Include="Model\Components\Transforms\MatrixTransformModel.cs" />
+    <Compile Include="Model\Components\Transforms\RotateTransformModel.cs" />
+    <Compile Include="Model\Components\Transforms\ScaleTransformModel.cs" />
+    <Compile Include="Model\Components\Transforms\TransformModelCollection.cs" />
+    <Compile Include="Model\Components\Transforms\TranslateTransformModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ComicRepositoryConstants.cs" />
+    <Compile Include="Repository\Reader\ComicBrushesRepository.cs" />
+    <Compile Include="Repository\Reader\ComicCommonRepository.cs" />
+    <Compile Include="Repository\Reader\ComicPageRepository.cs" />
+    <Compile Include="Repository\Reader\ComicReaderMediator.cs" />
+    <Compile Include="Repository\Reader\ComicReaderRepository.cs" />
+    <Compile Include="Repository\Reader\ComicResourcesRepository.cs" />
+    <Compile Include="Repository\Reader\ComicShapesRepository.cs" />
+    <Compile Include="Repository\Reader\ComicTimeLineRepository.cs" />
+    <Compile Include="Repository\Reader\ComicTransformsRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibHelper\src\LibHelper.csproj">
+      <Project>{99c49acd-fc70-4c3d-a375-8cae8d3ba521}</Project>
+      <Name>LibHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibMarkup\src\LibMarkup.csproj">
+      <Project>{5517c986-7c58-4294-8c96-63f3ab53f3b1}</Project>
+      <Name>LibMarkup</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

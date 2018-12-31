@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{80F1609D-7C56-45CC-9A05-EF04FA22642A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bau.Libraries.LibMediaPlayer.ViewModel</RootNamespace>
+    <AssemblyName>LibMediaPlayer.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Blogs\AlbumViewModel.cs" />
+    <Compile Include="Blogs\FolderViewModel.cs" />
+    <Compile Include="Controllers\Messengers\MediaMessengerController.cs" />
+    <Compile Include="MediaPlayerViewModel.cs" />
+    <Compile Include="Configuration\ConfigurationViewModel.cs" />
+    <Compile Include="Controllers\IViewsController.cs" />
+    <Compile Include="Controllers\Messengers\MessageChangeStatusNews.cs" />
+    <Compile Include="Controllers\EventArguments\FileEventArguments.cs" />
+    <Compile Include="Controllers\EventArguments\ReproductionListEventArguments.cs" />
+    <Compile Include="Media\MediaItemListViewModel.cs" />
+    <Compile Include="Media\MediaListViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\BauMvvm\src\BauMvvm.ViewModels\BauMvvm.ViewModels.csproj">
+      <Project>{42d1bb98-90e1-4a72-9e0b-c827adcb13c5}</Project>
+      <Name>BauMvvm.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\Plugins\src\Plugins.ViewModels\Plugins.ViewModels.csproj">
+      <Project>{5aa6a4e1-a1d3-47f6-a352-97df9db87fb6}</Project>
+      <Name>Plugins.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibDataStructures\src\LibDataStructures.csproj">
+      <Project>{d04b8a79-8470-40b4-b06f-9ab2223194ee}</Project>
+      <Name>LibDataStructures</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibHelper\src\LibHelper.csproj">
+      <Project>{99c49acd-fc70-4c3d-a375-8cae8d3ba521}</Project>
+      <Name>LibHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibMediaPlayer.Application\LibMediaPlayer.Application.csproj">
+      <Project>{36b4fa00-bdb0-4701-9600-b0b8bc99575e}</Project>
+      <Name>LibMediaPlayer.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibMediaPlayer.Model\LibMediaPlayer.Model.csproj">
+      <Project>{ecf7814e-d1b4-41fb-89fe-3e9a0b8531b7}</Project>
+      <Name>LibMediaPlayer.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

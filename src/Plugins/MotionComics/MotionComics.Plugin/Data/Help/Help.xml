@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<HelpPages>
+	<Page Title="Datos del cómic">
+		<Description>Datos descriptivos del cómic</Description>
+		<Code>@@Content@@</Code>
+		<Page Title="Título">
+			<Description>Título del cómic</Description>
+			<Code>
+				<![CDATA[
+					<Title>Título del cómic</Title>
+				]]>
+			</Code>
+		</Page>
+		<Page Title="Resumen">
+			<Description>Resumen del cómic</Description>
+			<Code>
+				<![CDATA[
+					<Summary>Descripción del cómic</Summary>
+				]]>
+			</Code>
+		</Page>
+		<Page Title="Portada">
+			<Description>Imagen de portada del cómic</Description>
+			<Code>
+				<![CDATA[
+					<ThumbFileName>Nombre de archivo (relativo al directorio raíz)</ThumbFileName>
+				]]>
+			</Code>
+		</Page>
+		<Page Title="Idioma">
+			<Description>Código de idioma</Description>
+			<Code>
+				<![CDATA[
+					<Language Key="Clave" Default="bool">Nombre idioma</Language>
+				]]>
+			</Code>
+		</Page>		
+	</Page>
+	<Page Title="Recursos">
+		<Description>Recursos del cómic</Description>
+		<Code>
+			<![CDATA[
+				<Resources>
+					@@Content@@
+				</Resources>
+			]]>
+		</Code>
+		<Page Title="Imagen">
+			<Description>Datos de una imagen</Description>
+			<Code>
+				<![CDATA[
+					<Image Key="Clave">
+						<FileName>Nombre de archivo</FileName>
+					</Image>
+				]]>
+			</Code>
+		</Page>
+		<Page Title ="Brochas">
+			<Description>Datos de los diferentes tipos de brochas</Description>
+			<Code>@@Content@@</Code>
+			<Page Title="Color">
+				<Description>Brocha de un sólo color</Description>
+				<Code>
+					<![CDATA[
+						<SolidBrush Key="Clave" Color="AARRGGBB" />
+					]]>
+				</Code>
+			</Page>
+			<Page Title="Lineal">
+				<Description>
+				<![CDATA[
+				Brocha con un gradiente lineal
+				Start: es el punto de inicio donde X e Y tienen el rango 0..1
+				SpreadMethod: tiene los siguientes valores: Pad
+				Stop: define diferente puntos de color dentro del gradiente:
+					Color: color del punto de parada
+					Offset: es el desplazamiento de un punto de parada en el rango 0..1
+				]]>
+				</Description>
+				<Code>
+					<![CDATA[
+						<LinearBrush Key="Clave" Start="X,Y" End="X,Y" SpreadMethod="Método">
+							<Stop Color="AARRGGBB" Offset="0..1"/>
+							<Stop Color="AARRGGBB" Offset="0..1"/>
+						</LinearBrush>
+					]]>
+				</Code>
+			</Page>
+			<Page Title="Circular">
+				<Description>
+					<![CDATA[
+				Brocha con un gradiante circular
+				Center: es el punto del centro del gradiante donde X e Y tienen el rango 0..1
+				RadiusX y RadiusY: representan el radio del gradiante con un rango 0..1
+				Origin: el punto de origen del gradiante con el rango 0..1
+				Stop: define diferente puntos de color dentro del gradiente:
+					Color: color del punto de parada
+					Offset: es el desplazamiento de un punto de parada en el rango 0..1
+				]]>
+				</Description>
+				<Code>
+					<![CDATA[
+						<RadialBrush Key="Clave" Center="X,1" RadiusX="0..1" RadiusY="0..1" Origin="X,Y">
+							<Stop Color="AARRGGBB" Offset="0..1"/>
+							<Stop Color="AARRGGBB" Offset="0..1"/>
+						</RadialBrush>
+					]]>
+				</Code>
+			</Page>
+		</Page>
+		<Page Title="Figura">
+			<Description>
+				<![CDATA[
+				Datos de una figura o forma
+				FillRule: valores NonZero ó EvenOdd
+				]]>
+			</Description>
+			<Code>
+				<![CDATA[
+					<Shape Key="Clave" Width="Ancho" Height="Alto">
+						<Transform>
+							<Translate Top="Y" Left="X"/>
+							<Matrix Data="Datos de la matriz de transformación (6 valores numéricos)" />
+						</Transform>
+						<Figure FillRule="Modo de relleno" Color ="AARRGGBB">
+							<Transform>
+								<Translate Top="Y" Left="X"/>
+								<Matrix Data="Datos de la matriz de transformación (6 valores numéricos)" />
+							</Transform>
+							<Data>
+								Datos de la figura (código)
+							</Data>
+						</Figure>
+					</Shape>
+				]]>
+			</Code>
+		</Page>
+	</Page>
+	<Page Title="Página">
+		<Description>Datos de la página</Description>
+		<Code>@@Content@@</Code>
+		<Page Title="Fondo">
+			<Description>Tipos de fondo de la página</Description>
+			<Code>@@Content@@</Code>
+			<Page Title="Color sólido">
+				<Description>Color sólido utilizado como fondo de la página</Description>
+				<Code>
+					<![CDATA[
+					<SolidBrush Key="Clave" ResourceKey="Clave del recurso" />
+					]]>
+				</Code>
+			</Page>
+			<Page Title="Gradiente lineal">
+				<Description>Gradiente lineal utilizado como fondo de la página</Description>
+				<Code>
+					<![CDATA[
+					<LinearBrush ResourceKey = "BrsLinearRed" />
+					]]>
+				</Code>
+			</Page>			
+			<Page Title="Gradiente radial">
+				<Description>Gradiente radial utilizado como fondo de la página</Description>
+				<Code>
+					<![CDATA[
+					<RadialBrush ResourceKey="Clave del recurso" />
+					]]>
+				</Code>
+			</Page>			
+			<Page Title="Imagen">
+				<Description>Imagen utilizada como fondo de la página</Description>
+				<Code>
+					<![CDATA[
+					<ImageBrush ResourceKey="Clave del recurso" />
+					]]>
+				</Code>
+			</Page>
+		</Page>
+		<Page Title="Elementos">
+			<Description>Elementos de la página</Description>
+			<Code>@@Content@@</Code>
+			<Page Title="Imagen">
+				<Description>Imagen</Description>
+				<Code>
+					<![CDATA[
+						<Image Key="Clave" ResourceKey="Clave del recurso" Top="Y" Left="X" Width="Ancho" Height="Alto" Visible="Bool"/>
+					]]>
+				</Code>				
+			</Page>
+			<Page Title="Texto">
+				<Description>Texto en varios idiomas</Description>
+				<Code>
+				<![CDATA[
+					<Text Top = "Y" Left = "X" Bold="bool" Italic="bool" Font="Nombre fuente" Size="Tamaño" Color="AARRGGBB">
+						Texto
+					</Text>
+				]]>
+				</Code>
+			</Page>
+
+			<Page Title="Texto multiidioma">
+				<Description>Texto en varios idiomas</Description>
+				<Code>
+				<![CDATA[
+					<Text Top="Y" Left="X" Bold="bool" Italic="bool" Font="Nombre fuente" Size="Tamaño" Color="AARRGGBB">
+						<Content Language="Clave idioma">
+							Texto
+						</Content>
+						<Content Language="Clave idioma">
+							Texto
+						</Content>
+					</Text>
+				]]>
+				</Code>
+			</Page>
+		</Page>
+	</Page>
+</HelpPages>

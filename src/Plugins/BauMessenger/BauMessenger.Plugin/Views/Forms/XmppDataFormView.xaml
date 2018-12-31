@@ -1,0 +1,39 @@
+﻿<Window x:Class="Bau.Plugins.BauMessenger.Views.Forms.XmppDataFormView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bau.Plugins.BauMessenger.Views.Forms"
+        mc:Ignorable="d"
+        Title="XmppDataFormView" Height="500" Width="500"
+				WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+				Loaded="Window_Loaded">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="35"/>
+		</Grid.RowDefinitions>
+		<TextBlock x:Name="lblInstructions" Grid.Row="0" />
+		<GroupBox Header="Rellene el siguiente formulario" Grid.Row="1" Margin = "3" >
+			<ScrollViewer x:Name="pnlViewer">
+				<Grid>
+				</Grid>
+			</ScrollViewer>
+		</GroupBox>
+		<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" >
+			<Button Margin = "3" Padding="5" IsDefault="True" Click="cmdSave_Click">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauMessenger.Plugin;component/Resources/Accept.png" Margin="0,0,3,0"/>
+					<TextBlock VerticalAlignment="Center">Grabar</TextBlock>
+				</StackPanel>
+			</Button>
+			<Button Margin = "3" Padding="5" IsCancel="True">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauMessenger.Plugin;component/Resources/Delete.png" Margin="0,0,3,0"></Image>
+					<TextBlock VerticalAlignment="Center">Cancelar</TextBlock>
+				</StackPanel>
+			</Button>
+		</StackPanel>
+	</Grid>
+</Window>

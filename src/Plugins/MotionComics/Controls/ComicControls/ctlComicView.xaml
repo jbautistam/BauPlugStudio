@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Bau.Controls.ComicControls.ctlComicView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+						 xmlns:Controls="clr-namespace:Bau.Controls.ComicControls.Controls"  
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ToolBar Grid.Row="0" Grid.Column="0" IsHitTestVisible="True">
+			<Button x:Name="cmdPreviousPage" ToolTip="Página anterior" Click="cmdPreviousPage_Click">
+				<Image Source="Assets/PreviousPage.png" />
+			</Button>
+			<Label x:Name="lblPage" Margin="2,0" />
+			<Button x:Name="cmdNextAction" ToolTip="Siguiente acción" Click="cmdNextAction_Click">
+				<Image Source="Assets/NextAction.png" />
+			</Button>
+			<Button x:Name="cmdNextPage" ToolTip="Siguiente página" Click="cmdNextPage_Click">
+				<Image Source="Assets/NextPage.png" />
+			</Button>
+			<Separator/>
+			<Button x:Name="cmdPlay" ToolTip="Ejecutar automáticamente" Click="cmdPlay_Click">
+				<Image Source="Assets/Play.png" />
+			</Button>
+			<Separator/>
+			<Button x:Name="cmdRefresh" ToolTip="Actualizar" Click="cmdRefresh_Click">
+				<Image Source="Assets/Refresh.png" />
+			</Button>
+			<ComboBox x:Name="cboLanguages" HorizontalAlignment="Right"/>
+		</ToolBar>
+
+		<Grid Grid.Row="1" Grid.Column="0" ClipToBounds="True">
+			<Controls:ComicPageView x:Name="udtComic" ShowAdorners="False"/>
+		</Grid>
+	</Grid>
+</UserControl>

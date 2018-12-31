@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<DbScript>
+
+	<Date Name = "Now" Value = "Now" />
+	
+	<Date Name = "Start" Value = "2018-12-01 18:30" />
+
+	<Let Name = "Start">
+		#2018-01-31#
+	</Let>
+
+	<Let Name = "Start">
+		Start + 1
+	</Let>
+	<Print>
+		Now: {{now}} Start: {{start}}
+	</Print>
+	
+	<!--
+		<Import FileName = "Images\Image.jpg" />
+		<Exception>Stop</Exception>
+	-->
+	
+	<Execute Provider = "Result">
+		<Command>
+			<Sentence>
+				CREATE TABLE IF NOT EXISTS Customers 
+					(
+						CustomerID TEXT(2000),
+						CompanyName TEXT(2000),
+						ContactName TEXT(2000)
+					)
+			</Sentence>
+		</Command>
+	</Execute>
+
+	<Execute Provider = "Result">
+		<Command>
+			<Sentence>
+				DELETE FROM Customers 
+			</Sentence>
+		</Command>
+	</Execute>
+	
+	<BeginTransaction Provider="Result" />
+
+	<ForEach Provider = "NorthWind">
+		<Command>
+			<Sentence>
+				SELECT CustomerId, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, 
+					   Country, Phone, Fax
+					FROM Customers
+			</Sentence>
+		</Command>
+		<EmptyData>
+			<Print>No se ha encontrado ningún cliente</Print>
+		</EmptyData>
+		<WithData>
+			<IfExists Provider = "Result">
+				<Command>
+					<Sentence>
+						SELECT CustomerId
+							FROM Customers 
+							WHERE CustomerId = @CustomerId
+					</Sentence>
+					<Argument Type="String" Variable = "CustomerID" ParameterName="@CustomerID" />
+				</Command>
+				<Then>
+					<Execute Provider = "Result">
+						<Command>
+							<Sentence>
+								UPDATE Customers 
+									SET CompanyName = {{CompanyName}},  
+										ContactName = {{ContactName}}
+									WHERE CustomerId = {{CustomerId}}
+							</Sentence>
+						</Command>
+					</Execute>
+				</Then>
+				<Else>
+					<Execute Provider = "Result">
+						<Command>
+							<Sentence>
+								INSERT INTO Customers (CustomerId, CompanyName, ContactName)
+									VALUES ({{CustomerId}}, {{CompanyName}}, {{ContactName}})
+							</Sentence>
+						</Command>
+					</Execute>
+				</Else>
+			</IfExists>
+		</WithData>
+	</ForEach>
+	
+	<RollbackTransaction Provider="Result" />
+	<!--<CommitTransaction Provider="Result" />-->
+</DbScript>

@@ -1,0 +1,62 @@
+﻿<Window xmlns:Files="clr-namespace:Bau.Controls.Files;assembly=BauControls"  x:Class="Bau.Libraries.WebCurator.Plugin.Views.WebSites.ProjectTargetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+						 Title="Mantenimiento de proyecto destino" Height="420" Width="512" ResizeMode="NoResize" 
+						 ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<GroupBox Header="Origen" Grid.Row="0" Grid.Column="0" Margin = "3" >
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Label Content="Archivo de proyecto:" Grid.Row="0" Grid.Column="0"/>
+				<Files:FileSelect Grid.Row="0" Grid.Column="1" Margin = "3" FileName="{Binding Path=ProjectFileName}" FontWeight="Normal" 
+													Mask="Archivos de proyecto (*.wdx)|*.wdx|Todos los archivos (*.*)|*.*"/>
+				<Label Content="Secciones con páginas internas:" Grid.Row="1" Grid.Column="0"/>
+				<TextBox Grid.Row="1" Grid.Column="1" MinLines="5"
+								AcceptsReturn="True" Margin = "3" Text="{Binding Path=SectionWithPages,UpdateSourceTrigger=PropertyChanged}" VerticalScrollBarVisibility="Auto" />
+				<Files:FileSelect x:Name="fnSectionWithPages" Grid.Row="2" Grid.Column="1" FontWeight="Normal" Margin = "3" 
+													Mask="Archivos de sección (*.sct)|*.sct|Todos los archivos (*.*)|*.*"/>
+				<Label Content="Secciones de menú:" Grid.Row="3" Grid.Column="0"/>
+				<TextBox Grid.Row="3" Grid.Column="1" MinLines="5" Margin = "3" 
+								AcceptsReturn="True" Text="{Binding Path=SectionMenus}" VerticalScrollBarVisibility="Auto" />
+				<Files:FileSelect x:Name="fnSectionMenus" Grid.Row="4" Grid.Column="1" FontWeight="Normal"  Margin = "3" 
+													Mask="Archivos de sección (*.sct)|*.sct|Todos los archivos (*.*)|*.*"/>
+				<Label Content="Etiquetas:" Grid.Row="5" Grid.Column="0"/>
+				<Files:FileSelect Grid.Row="5" Grid.Column="1" FileName="{Binding Path=SectionTagMenuFileName}" FontWeight="Normal"  Margin = "3" 
+													Mask="Archivos de sección (*.sct)|*.sct|Todos los archivos (*.*)|*.*"/>
+			</Grid>
+		</GroupBox>
+
+		<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+			<Button Margin = "3" Padding="5" IsDefault="True" Command="{Binding Path=SaveCommand}">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauControls;component/Themes/Images/Accept.png"></Image>
+					<TextBlock>Grabar</TextBlock>
+				</StackPanel>
+			</Button>
+			<Button Margin = "3" Padding="5" IsCancel="True">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauControls;component/Themes/Images/Delete.png"></Image>
+					<TextBlock>Cancelar</TextBlock>
+				</StackPanel>
+			</Button>
+		</StackPanel>
+	</Grid>
+</Window>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{75166DCF-14F5-4A85-9DD5-984E4EB80B5F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bau.Libraries.FtpManager.ViewModel</RootNamespace>
+    <AssemblyName>FtpManager.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Connections\FtpConnectionViewModel.cs" />
+    <Compile Include="Controllers\IViewsController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\Services\UploadProcessService.cs" />
+    <Compile Include="Controllers\SourceEditorPluginManager.cs" />
+    <Compile Include="Controllers\TreeNodesSchemaManager.cs" />
+    <Compile Include="FtpExplorer\EventArguments\FileEventArgs.cs" />
+    <Compile Include="FtpExplorer\FtpConnectionItems\FtpFileListItemViewModel.cs" />
+    <Compile Include="FtpExplorer\FtpConnectionItems\FtpFileNodeViewModel.cs" />
+    <Compile Include="FtpExplorer\FtpConnectionItems\FtpTreeExplorerViewModel.cs" />
+    <Compile Include="FtpExplorer\FtpExplorerViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FtpManagerViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\BauMvvm\src\BauMvvm.ViewModels\BauMvvm.ViewModels.csproj">
+      <Project>{42d1bb98-90e1-4a72-9e0b-c827adcb13c5}</Project>
+      <Name>BauMvvm.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\Plugins\src\Plugins.ViewModels\Plugins.ViewModels.csproj">
+      <Project>{5aa6a4e1-a1d3-47f6-a352-97df9db87fb6}</Project>
+      <Name>Plugins.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibDataStructures\src\LibDataStructures.csproj">
+      <Project>{d04b8a79-8470-40b4-b06f-9ab2223194ee}</Project>
+      <Name>LibDataStructures</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibHelper\src\LibHelper.csproj">
+      <Project>{99c49acd-fc70-4c3d-a375-8cae8d3ba521}</Project>
+      <Name>LibHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Communications\LibFtpClient\src\LibFtpClient\LibFtpClient\LibFtpClient.csproj">
+      <Project>{2ffe845d-2e4f-440e-8b9f-17afcb9d166b}</Project>
+      <Name>LibFtpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SourceEditor\SourceEditor.Model\SourceEditor.Model.csproj">
+      <Project>{bb1fba95-4774-4159-a770-b985f22506d0}</Project>
+      <Name>SourceEditor.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FtpManager.Application\FtpManager.Application.csproj">
+      <Project>{68042938-88cd-4479-b6e7-c199bf8a96c8}</Project>
+      <Name>FtpManager.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FtpManager.Model\FtpManager.Model.csproj">
+      <Project>{72a2d48c-52af-4570-b39b-32d8f6de8a95}</Project>
+      <Name>FtpManager.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

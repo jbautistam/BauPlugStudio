@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{307B9A86-7FEA-405F-873E-40D6E8060DCA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bau.Libraries.DevConferences.Admon.ViewModel</RootNamespace>
+    <AssemblyName>DevConferences.Admon.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\ConfigurationViewModel.cs" />
+    <Compile Include="Controllers\GlobalEnums.cs" />
+    <Compile Include="DevConferencesViewModel.cs" />
+    <Compile Include="Controllers\IViewsController.cs" />
+    <Compile Include="Explorer\TreeExplorerNodeViewModel.cs" />
+    <Compile Include="Explorer\TreeTracksViewModel.cs" />
+    <Compile Include="Projects\CategoryViewModel.cs" />
+    <Compile Include="Projects\EntryViewModel.cs" />
+    <Compile Include="Projects\TrackManagerViewModel.cs" />
+    <Compile Include="Projects\TrackViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\BauMvvm\src\BauMvvm.ViewModels\BauMvvm.ViewModels.csproj">
+      <Project>{42d1bb98-90e1-4a72-9e0b-c827adcb13c5}</Project>
+      <Name>BauMvvm.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\Plugins\src\Plugins.ViewModels\Plugins.ViewModels.csproj">
+      <Project>{5aa6a4e1-a1d3-47f6-a352-97df9db87fb6}</Project>
+      <Name>Plugins.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibHelper\src\LibHelper.csproj">
+      <Project>{99c49acd-fc70-4c3d-a375-8cae8d3ba521}</Project>
+      <Name>LibHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevConference.Admon.Application\DevConference.Admon.Application.csproj">
+      <Project>{01f412af-d90e-41b6-bc22-ec87b3c0a484}</Project>
+      <Name>DevConference.Admon.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevConference.Application\DevConference.Application.csproj">
+      <Project>{c3922576-6dfa-4f48-827e-ad5ab7213efe}</Project>
+      <Name>DevConference.Application</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,71 @@
+﻿<UserControl xmlns:CodeEditor="clr-namespace:Bau.Controls.CodeEditor;assembly=CodeEditor"  
+			 x:Class="Bau.Libraries.FullDatabaseStudio.Plugin.Views.Queries.QueryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="300">
+	<Grid x:Name="grdData">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="2*" />
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<GroupBox Header="Propiedades" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin = "3" >
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Label Content="Nombre:" Grid.Row="0" Grid.Column="0" />
+				<TextBox Grid.Row="0" Grid.Column="1" Margin = "3" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" />
+				<Label Content="Conexión:" Grid.Row="0" Grid.Column="2" />
+				<ComboBox Grid.Row="0" Grid.Column="3" Margin = "3" 
+									ItemsSource="{Binding Path=ComboConnections.Items}" 
+									DisplayMemberPath="Text" SelectedItem="{Binding Path=ComboConnections.SelectedItem}" />
+				<Label Content="Descripción:" Grid.Row="1" Grid.Column="0" />
+				<TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin = "3" 
+								 Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" MinLines="3" />
+			</Grid>
+		</GroupBox>
+		<GroupBox Header="Consulta" Grid.Row="1" Grid.Column="0" Margin = "3" Padding="5">
+			<CodeEditor:ctlEditor x:Name="udtEditor" TextChanged="udtEditor_Changed" FontWeight="Normal" />
+		</GroupBox>
+		<GridSplitter Grid.Row="2" Grid.Column="0" Width="Auto" Height="3" 
+									ResizeDirection="Rows" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="#FF566FDE" />
+		<GroupBox Header="Resultado" Grid.Row="2" Grid.Column="0" Margin = "3" >
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<ToolBar IsHitTestVisible="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+					<Button Command="{Binding Path=ProcessCommand}" ToolTip="Ejecutar">
+						<Image Source="/BauControls;component/Themes/Images/Process.png" />
+					</Button>
+					<Separator/>
+					<Button Command="{Binding Path=CopyCommand}" ToolTip="Copiar">
+						<Image Source="/BauControls;component/Themes/Images/Copy.png" />
+					</Button>
+					<Button Command="{Binding Path=ExportCommand}" ToolTip="Exportar">
+						<Image Source="/BauControls;component/Themes/Images/SaveAs.png" />
+					</Button>
+				</ToolBar>
+				<DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Path=DataResults}" Grid.Row="1" Grid.Column="0" Margin = "3" 
+									FontWeight="Normal" CanUserAddRows="False" CanUserDeleteRows="False" ClipboardCopyMode="IncludeHeader" />
+			</Grid>
+		</GroupBox>
+	</Grid>
+</UserControl>

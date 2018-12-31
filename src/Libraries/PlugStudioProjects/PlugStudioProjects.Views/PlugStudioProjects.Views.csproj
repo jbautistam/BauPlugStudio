@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8B828680-CF36-442C-B565-C910DEEECF7A}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Bau.Libraries.PlugStudioProjects.Views</RootNamespace>
+    <AssemblyName>PlugStudioProjects.Views</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\PlugStudioController.cs" />
+    <Compile Include="FileNewView.xaml.cs">
+      <DependentUpon>FileNewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TreeExplorerView.xaml.cs">
+      <DependentUpon>TreeExplorerView.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\File.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\NewItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Project.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Properties.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="FileNewView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TreeExplorerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\BauMvvm\src\BauMvvm.ViewModels\BauMvvm.ViewModels.csproj">
+      <Project>{42d1bb98-90e1-4a72-9e0b-c827adcb13c5}</Project>
+      <Name>BauMvvm.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\BauMvvm\src\BauMvvm.Views\BauMvvm.Views.csproj">
+      <Project>{ffa90cce-8c07-4a0f-a90c-3ed1b7b81e9c}</Project>
+      <Name>BauMvvm.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\Plugins\src\Plugins.Views\Plugins.Views.csproj">
+      <Project>{aa000af7-9f53-426b-9a91-154d11513fa9}</Project>
+      <Name>Plugins.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlugStudioProjects.ViewModel\PlugStudioProjects.csproj">
+      <Project>{dcb021ef-004b-48d3-9a75-fcef6be30c3c}</Project>
+      <Name>PlugStudioProjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

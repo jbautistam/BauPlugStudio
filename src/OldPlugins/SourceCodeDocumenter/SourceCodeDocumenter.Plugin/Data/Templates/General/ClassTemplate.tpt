@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h1 class="panel-title">{{StructType}} {{Name}}</h1>
+		</div>
+		<div class="panel-body">
+			<ul>
+				<li>
+					<strong>Espacio de nombres:</strong>
+					<span>{{NameSpace|Link}}</span>
+				</li>
+				<IfValue ValueType="BaseType">
+					<li>
+						<strong>Base:</strong>
+						<span>{{BaseType|Link}}</span>
+					</li>
+				</IfValue>
+			</ul>
+			<p>{{Summary}}</p>
+		</div>
+	</div>
+
+	<IfValue ValueType="Remarks">
+		<div class="bs-callout bs-callout-info">
+			<h4>Comentarios</h4>
+			<p>{{Remarks}}</p>
+		</div>
+	</IfValue>
+
+	<IfExists StructType = "Interface">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Interfaces</h3>
+			</div>
+			<div class="panel-body">
+				<table class ="table table-hover">
+					<thead>
+						<tr>
+							<th>Ambito</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType ="Interface">
+							<tr>
+								<td>{{Modifier}}</td>
+								<td>{{Name|Link}}</td>
+								<td>{{Summary}}</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType = "Class">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Clases</h3>
+			</div>
+			<div class="panel-body">
+				<table class ="table table-hover">
+					<thead>
+						<tr>
+							<th>Ambito</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType ="Class">
+							<tr>
+								<td>{{Modifier}}</td>
+								<td>{{Name|Link}}</td>
+								<td>{{Summary}}</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType = "Struct">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Estructuras</h3>
+			</div>
+			<div class="panel-body">
+				<table class ="table table-hover">
+					<thead>
+						<tr>
+							<th>Ambito</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType ="Struct">
+							<tr>
+								<td>{{Modifier}}</td>
+								<td>{{Name|Link}}</td>
+								<td>{{Summary}}</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType = "Enum">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Enumerados</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Ambito</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType = "Enum">
+							<tr>
+								<td>{{Modifier}}</td>
+								<td>{{Name}}</td>
+								<td>{{Summary}}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan = "2">
+									<p>{{Remarks}}</p>
+									<IfExists StructType = "EnumMember">
+										<h3>Miembros</h3>
+										<ul>
+											<ForEach StructType = "EnumMember">
+												<li>
+													<span IsBold ="true">{{Name}}:</span>
+													<span>{{Summary}}</span>
+												</li>
+											</ForEach>
+										</ul>
+									</IfExists>
+								</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType = "Constructor">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Constructores</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Ambito</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType = "Constructor">
+							<tr>
+								<td>{{Modifier}}</td>
+								<td>{{Name}}</td>
+								<td>{{Summary}}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan = "2">
+									<p>{{Remarks}}</p>
+									<p>{{Prototype}}</p>
+									<br/>
+									<IfExists StructType = "Argument">
+										<h3>Parámetros</h3>
+										<ul>
+											<ForEach StructType = "Argument">
+												<li>
+													<Part IsBold ="yes">{{Name}} ({{Type|Link}}):</Part>
+													<Part>{{Summary}}</Part>
+												</li>
+											</ForEach>
+										</ul>
+										<br/>
+									</IfExists>
+									<IfExists StructType = "ReturnValue">
+										<h3>Valor de retorno</h3>
+										<Select StructType ="ReturnValue">
+											<p>
+												<Part IsBold="true">Tipo:</Part>
+												<span>{{Type|Link}}</span>
+											</p>
+											<p>{{Summary}}</p>
+										</Select>
+									</IfExists>
+								</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType = "Method">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Métodos</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Ambito</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType = "Method">
+							<tr>
+								<td>{{Modifier}}</td>
+								<td>{{Name}}</td>
+								<td>{{Summary}}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan = "2">
+									<p>{{Remarks}}</p>
+									<p>{{Prototype}}</p>
+									<br/>
+									<IfExists StructType = "Argument">
+										<h3>Parámetros</h3>
+										<ul>
+											<ForEach StructType = "Argument">
+												<li>
+													<Part IsBold ="yes">{{Name}} ({{Type|Link}}):</Part>
+													<Part>{{Summary}}</Part>
+												</li>
+											</ForEach>
+										</ul>
+										<br/>
+									</IfExists>
+									<IfExists StructType = "ReturnValue">
+										<h3>Valor de retorno</h3>
+										<Select StructType ="ReturnValue">
+											<p>
+												<Part IsBold="true">Tipo:</Part>
+												<span>{{Type|Link}}</span>
+											</p>
+											<p>{{Summary}}</p>
+										</Select>
+									</IfExists>
+								</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType = "Property">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Propiedades</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Ambito</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType = "Property">
+							<tr>
+								<td>{{Modifier}}</td>
+								<td>{{Name}}</td>
+								<td>{{Summary}}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan = "2">
+									<p>{{Remarks}}</p>
+									<p>{{Prototype}}</p>
+									<br/>
+									<IfExists StructType = "Argument">
+										<h3>Parámetros</h3>
+										<ul>
+											<ForEach StructType = "Argument">
+												<li>
+													<Part IsBold ="yes">{{Name}} ({{Type|Link}}):</Part>
+													<Part>{{Summary}}</Part>
+												</li>
+											</ForEach>
+										</ul>
+										<br/>
+									</IfExists>
+									<IfExists StructType = "ReturnValue">
+										<h3>Valor de retorno</h3>
+										<Select StructType ="ReturnValue">
+											<p>
+												<Part IsBold="true">Tipo:</Part>
+												<span>{{Type|Link}}</span>
+											</p>
+											<p>{{Summary}}</p>
+										</Select>
+									</IfExists>
+								</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+</Page>

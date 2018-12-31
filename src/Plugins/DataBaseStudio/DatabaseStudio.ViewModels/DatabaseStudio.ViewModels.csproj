@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{36A3386F-9EB3-42A8-B4EE-C7E0DFD82EBF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bau.Libraries.DatabaseStudio.ViewModels</RootNamespace>
+    <AssemblyName>DatabaseStudio.ViewModels</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\ConfigurationViewModel.cs" />
+    <Compile Include="Controllers\DbScriptsViewModelEnums.cs" />
+    <Compile Include="Controllers\IViewsController.cs" />
+    <Compile Include="EventArguments\LogArgs.cs" />
+    <Compile Include="MainViewModel.cs" />
+    <Compile Include="Projects\Deployments\DeploymentSelectViewModel.cs" />
+    <Compile Include="Projects\Deployments\Parameters\ParameterListViewModel.cs" />
+    <Compile Include="Projects\Connections\ConnectionComboViewModel.cs" />
+    <Compile Include="Projects\Connections\DataBaseConnectionViewModel.cs" />
+    <Compile Include="Projects\Deployments\DeploymentConnectionListViewModel.cs" />
+    <Compile Include="Projects\Deployments\DeploymentConnectionViewModel.cs" />
+    <Compile Include="Projects\Deployments\DeploymentViewModel.cs" />
+    <Compile Include="Projects\Deployments\Parameters\ParameterViewModel.cs" />
+    <Compile Include="Projects\Deployments\Scripts\TreeScriptNodeViewModel.cs" />
+    <Compile Include="Projects\Deployments\Scripts\TreeScriptsViewModel.cs" />
+    <Compile Include="Projects\ProjectExplorerViewModel.cs" />
+    <Compile Include="Projects\Queries\QueryViewModel.cs" />
+    <Compile Include="Projects\Reports\ReportViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\BauMvvm\src\BauMvvm.ViewModels\BauMvvm.ViewModels.csproj">
+      <Project>{42d1bb98-90e1-4a72-9e0b-c827adcb13c5}</Project>
+      <Name>BauMvvm.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\Plugins\src\Plugins.ViewModels\Plugins.ViewModels.csproj">
+      <Project>{5aa6a4e1-a1d3-47f6-a352-97df9db87fb6}</Project>
+      <Name>Plugins.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibDataStructures\src\LibDataStructures.csproj">
+      <Project>{d04b8a79-8470-40b4-b06f-9ab2223194ee}</Project>
+      <Name>LibDataStructures</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibHelper\src\LibHelper.csproj">
+      <Project>{99c49acd-fc70-4c3d-a375-8cae8d3ba521}</Project>
+      <Name>LibHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\DataBase\src\DataBaseProviders\LibDbProviders.Base\LibDbProviders.Base.csproj">
+      <Project>{24f4cd77-81a5-4f40-96e9-d86a9f8b3327}</Project>
+      <Name>LibDbProviders.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\PlugStudioProjects\PlugStudioProjects.ViewModel\PlugStudioProjects.csproj">
+      <Project>{dcb021ef-004b-48d3-9a75-fcef6be30c3c}</Project>
+      <Name>PlugStudioProjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\DatabaseStudio.Application\DatabaseStudio.Application.csproj">
+      <Project>{797f4c40-c270-480b-824e-94820c5a1cdb}</Project>
+      <Name>DatabaseStudio.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\DatabaseStudio.Models\DatabaseStudio.Models.csproj">
+      <Project>{fe9d3650-25f1-41e4-9304-19c1bb5e1bc4}</Project>
+      <Name>DatabaseStudio.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

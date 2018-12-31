@@ -1,0 +1,28 @@
+﻿<UserControl xmlns:my="clr-namespace:Bau.Controls.Files;assembly=BauControls"  x:Class="Bau.Plugins.DocWriter.Views.Configuration.ctlConfigurationDocWriter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="146" d:DesignWidth="514">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<Label Content="Directorio biblioteca:" Grid.Row="0" Grid.Column="0"/>
+		<my:PathSelect PathName="{Binding Path=PathData}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin = "3" />
+		<Label Content="Directorio generación:" Grid.Row="1" Grid.Column="0"/>
+		<my:PathSelect PathName="{Binding Path=PathGeneration}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin = "3" />
+		<CheckBox Content="Minimizar" IsChecked="{Binding Path=Minimize}" Grid.Row="2" Grid.Column="1" Margin = "3" />
+		<CheckBox Content="Grabar antes de compilar" IsChecked="{Binding Path=SaveBeforeCompile}" Grid.Row="2" Grid.Column="2" Margin = "3" />
+		<CheckBox Content="Mostrar Webs en navegador externo" IsChecked="{Binding Path=OpenExternalWebBrowser}" Grid.Row="2" Grid.Column="3" Margin = "3" />
+	</Grid>
+</UserControl>

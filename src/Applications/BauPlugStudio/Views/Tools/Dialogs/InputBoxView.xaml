@@ -1,0 +1,31 @@
+﻿<Window x:Class="Bau.Applications.BauPlugStudio.Views.Tools.Dialogs.InputBoxView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Introducir texto" Height="200" Width="300" Loaded="Window_Loaded" Padding="5" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+	<Grid Margin="2">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<TextBlock x:Name="lblMessage" Text="Mensaje" Grid.Row="0" Grid.Column="0" Margin = "3" TextWrapping="WrapWithOverflow" />
+		<TextBox x:Name="txtInput" Grid.Row="1" Margin = "3" Grid.Column="0" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" />
+		<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+			<Button Margin = "3" Padding="5" IsDefault="True" Click="cmdSave_Click">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauControls;component/Themes/Images/Accept.png"></Image>
+					<TextBlock>Grabar</TextBlock>
+				</StackPanel>
+			</Button>
+			<Button Margin = "3" Padding="5" IsCancel="True">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauControls;component/Themes/Images/Delete.png"></Image>
+					<TextBlock>Cancelar</TextBlock>
+				</StackPanel>
+			</Button>
+		</StackPanel>
+	</Grid>
+</Window>

@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<DbScriptParameters>
+	<Connection Key = "Northwind"  Type = "SqLite"  Server = ""  Port = "0"  User = ""  Password = ""  IntegratedSecurity = "no"  Database = "" >
+		<Filename>C:\Users\jbautistam\Proyectos\Development\NewNet\Applications\BauDBScripts\Applications\Bau.DbScripts.Studio\Bau.DbScripts.Studio\bin\Debug\Data\Northwind.db3</Filename>
+		<Connectionstring/>
+</Connection>
+	<Connection Key = "Result"  Type = "SqLite"  Server = ""  Port = "0"  User = ""  Password = ""  IntegratedSecurity = "no"  Database = "" >
+		<Filename>C:\Users\jbautistam\Proyectos\Development\NewNet\Applications\BauDBScripts\Applications\Bau.DbScripts.Studio\Bau.DbScripts.Studio\bin\Debug\Data\Temporal.db3</Filename>
+		<Connectionstring/>
+</Connection>
+	<Parameters>CustomerID = ISLAT</Parameters>
+</DbScriptParameters>

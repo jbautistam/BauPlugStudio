@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D9AF5868-C139-4E5D-8614-C86151C53B23}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bau.Plugins.DataBaseStudio</RootNamespace>
+    <AssemblyName>DataBaseStudio.Plugin</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Composition.AttributedModel, Version=1.0.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Composition.AttributedModel.1.2.0\lib\netstandard2.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention, Version=1.0.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Composition.Convention.1.2.0\lib\netstandard2.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting, Version=1.0.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Composition.Hosting.1.2.0\lib\netstandard2.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime, Version=1.0.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Composition.Runtime.1.2.0\lib\netstandard2.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts, Version=1.0.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Composition.TypedParts.1.2.0\lib\netstandard2.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="DataBaseStudioPlugin.cs" />
+    <Compile Include="Views\Connections\ConnectionView.xaml.cs">
+      <DependentUpon>ConnectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ViewsController.cs" />
+    <Compile Include="Views\Queries\QueryView.xaml.cs">
+      <DependentUpon>QueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\ReportExecutionFileView.xaml.cs">
+      <DependentUpon>ReportExecutionFileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\ReportGenerateView.xaml.cs">
+      <DependentUpon>ReportGenerateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\ReportExecutionView.xaml.cs">
+      <DependentUpon>ReportExecutionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\ReportView.xaml.cs">
+      <DependentUpon>ReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\UC\ctlListFilesParameters.xaml.cs">
+      <DependentUpon>ctlListFilesParameters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\UC\ctlListExecutionParameters.xaml.cs">
+      <DependentUpon>ctlListExecutionParameters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UC\Connections\ctlListConnections.xaml.cs">
+      <DependentUpon>ctlListConnections.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Controls\WPF\BauControls\BauControls.csproj">
+      <Project>{c4411755-086a-464b-a62d-be0ccd18efb9}</Project>
+      <Name>BauControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Controls\WPF\BauMVVMControls\BauMVVMControls.csproj">
+      <Project>{4b98b2a6-084c-497f-92c8-18211913e93c}</Project>
+      <Name>BauMVVMControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Controls\WPF\CodeEditor\CodeEditor.csproj">
+      <Project>{4e07699f-5bd6-41c5-a42e-928a2aa332fc}</Project>
+      <Name>CodeEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Libraries\Architecture\MVVM\BauMvvm.ViewModels\BauMvvm.ViewModels.csproj">
+      <Project>{2bbeb6ed-e4fa-4f4a-bb6f-ebf62f5155e8}</Project>
+      <Name>BauMvvm.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Libraries\Architecture\MVVM\BauMvvm.Views\BauMvvm.Views.csproj">
+      <Project>{ffa90cce-8c07-4a0f-a90c-3ed1b7b81e9c}</Project>
+      <Name>BauMvvm.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Libraries\Architecture\Plugins\Plugins.ViewModels\Plugins.ViewModels.csproj">
+      <Project>{fc4d01e4-ece1-4346-a2b2-d305e746ea28}</Project>
+      <Name>Plugins.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Libraries\Architecture\Plugins\Plugins.Views\Plugins.Views.csproj">
+      <Project>{aa000af7-9f53-426b-9a91-154d11513fa9}</Project>
+      <Name>Plugins.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibDataBaseStudio.ViewModel\LibDataBaseStudio.ViewModel.csproj">
+      <Project>{70f4f6a8-d7c2-4bcf-9252-6ee865c4ef0e}</Project>
+      <Name>LibDataBaseStudio.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\Connections\ConnectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Queries\QueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reports\ReportExecutionFileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reports\ReportGenerateView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reports\ReportExecutionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reports\ReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reports\UC\ctlListFilesParameters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reports\UC\ctlListExecutionParameters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UC\Connections\ctlListConnections.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Connection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Process.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Table.png" />
+    <Resource Include="Themes\Images\TablesRoot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\View.png" />
+    <Resource Include="Themes\Images\ViewsRoot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Project.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Routines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Column.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\StoredProceduresRoot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\StoredProcedure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\FunctionsRoot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Function.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Query.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\PivotTable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Help\Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

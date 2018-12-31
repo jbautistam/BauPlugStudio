@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Bau.Plugins.TwitterMessenger.Views.Configuration.ctlConfigurationTwitterMessenger"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="320" d:DesignWidth="1038" >
+	<GroupBox Header="Claves aplicación" Grid.Row="1" Grid.Column="0">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+			<Label Content="OAuthConsumerKey:" Grid.Row="0" Grid.Column="0"></Label>
+			<TextBox Text="{Binding Path=OAuthConsumerKey, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Margin = "3" ></TextBox>
+			<Label Content="OAuthConsumerSecret:" Grid.Row="1" Grid.Column="0"></Label>
+			<TextBox Text="{Binding Path=OAuthConsumerSecret, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin = "3" ></TextBox>
+		</Grid>
+	</GroupBox>
+</UserControl>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h1 class="panel-title">Estructura de {{Name}}</h1>
+		</div>
+		<div class="panel-body">
+			<ul>
+				<ForEach StructType ="NameSpace">
+					<li>{{Name|Link}}</li>
+					<IfExists StructType ="Class">
+						<li>
+							<Part IsBold="true">Clases:</Part>
+						</li>
+						<ul>
+							<ForEach StructType ="Class">
+								<li>{{Name|Link}}</li>
+							</ForEach>
+						</ul>
+					</IfExists>
+					<IfExists StructType ="Interface">
+						<li>
+							<Part IsBold="true">Interfaces:</Part>
+						</li>
+						<ul>
+							<ForEach StructType ="Interface">
+								<li>{{Name|Link}}</li>
+							</ForEach>
+						</ul>
+					</IfExists>
+					<IfExists StructType ="Struct">
+						<li>
+							<Part IsBold="true">Estructuras:</Part>
+						</li>
+						<ul>
+							<ForEach StructType ="Struct">
+								<li>{{Name|Link}}</li>
+							</ForEach>
+						</ul>
+					</IfExists>
+					<IfExists StructType ="Enum">
+						<li>
+							<Part IsBold="true">Enumerados:</Part>
+						</li>
+						<ul>
+							<ForEach StructType ="Enum">
+								<li>{{Name|Link}}</li>
+							</ForEach>
+						</ul>
+					</IfExists>
+				</ForEach>
+			</ul>
+		</div>
+	</div>
+</Page>

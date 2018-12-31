@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A2D7A784-B3DA-4FD7-B52E-29D86044E9D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bau.Libraries.BookLibrary.ViewModel</RootNamespace>
+    <AssemblyName>BookLibrary.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BookLibraryViewModel.cs" />
+    <Compile Include="Books\Content\BaseContentViewModel.cs" />
+    <Compile Include="Books\Content\Comic\ComicContentViewModel.cs" />
+    <Compile Include="Books\Content\Comic\PageListItemViewModel.cs" />
+    <Compile Include="Books\Content\eBook\BookCompileViewModel.cs" />
+    <Compile Include="Books\Content\BookContentViewModel.cs" />
+    <Compile Include="Books\Content\TreePages\PageNodeViewModel.cs" />
+    <Compile Include="Books\Content\TreePages\TreePagesViewModel.cs" />
+    <Compile Include="Books\LibraryViewModel.cs" />
+    <Compile Include="Books\TreeBooks\BaseNodeViewModel.cs" />
+    <Compile Include="Books\TreeBooks\BookNodeViewModel.cs" />
+    <Compile Include="Books\TreeBooks\LibraryNodeViewModel.cs" />
+    <Compile Include="Books\TreeBooks\PaneTreeBooksViewModel.cs" />
+    <Compile Include="Books\TreeBooks\TreeBooksViewModel.cs" />
+    <Compile Include="Configuration\ConfigurationViewModel.cs" />
+    <Compile Include="Controllers\IViewsController.cs" />
+    <Compile Include="Controllers\PageShowEventArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\BauMvvm\src\BauMvvm.ViewModels\BauMvvm.ViewModels.csproj">
+      <Project>{42d1bb98-90e1-4a72-9e0b-c827adcb13c5}</Project>
+      <Name>BauMvvm.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\Plugins\src\Plugins.ViewModels\Plugins.ViewModels.csproj">
+      <Project>{5aa6a4e1-a1d3-47f6-a352-97df9db87fb6}</Project>
+      <Name>Plugins.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibDataStructures\src\LibDataStructures.csproj">
+      <Project>{d04b8a79-8470-40b4-b06f-9ab2223194ee}</Project>
+      <Name>LibDataStructures</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibHelper\src\LibHelper.csproj">
+      <Project>{99c49acd-fc70-4c3d-a375-8cae8d3ba521}</Project>
+      <Name>LibHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Formats\eBooks\src\LibComicsBooks.Standard\LibComicsBooks.Standard.csproj">
+      <Project>{7c682f88-f0b7-4f1f-aa6c-312839541723}</Project>
+      <Name>LibComicsBooks.Standard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookLibrary.Application\BookLibrary.Application.csproj">
+      <Project>{c34a976a-5b9c-4fc0-8c0a-63a092938f30}</Project>
+      <Name>BookLibrary.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookLibrary.Model\BookLibrary.Model.csproj">
+      <Project>{dd788bf1-58b3-40d2-8265-c27759a3f3cd}</Project>
+      <Name>BookLibrary.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

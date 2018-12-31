@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Bau.Applications.BauPlugStudio.Views.Tools.Errors.ListErrorView"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            mc:Ignorable="d" 
+            d:DesignHeight="300" d:DesignWidth="300"
+ 						xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock">
+	<ListView x:Name="lswLog" Grid.Column="1" ItemsSource="{Binding Path=ErrorItems}" SelectionMode="Single" SelectedItem="{Binding Path=SelectedErrorItem}">
+		<ListView.View>
+			<GridView>
+				<GridViewColumn Width="75" Header="F. alta" DisplayMemberBinding="{Binding Path=DateNew,StringFormat={}{0:HH:mm}}" />
+				<GridViewColumn Width="140" Header="Origen" DisplayMemberBinding="{Binding Path=Source}" />
+				<GridViewColumn Width="200" Header="Archivo" DisplayMemberBinding="{Binding Path=FileName}" />
+				<GridViewColumn Width="300" Header="Error" DisplayMemberBinding="{Binding Path=Error}" />
+				<GridViewColumn Width="150" Header="Fila" DisplayMemberBinding="{Binding Path=Row}" />
+				<GridViewColumn Width="150" Header="Columna" DisplayMemberBinding="{Binding Path=Column}" />
+			</GridView>
+		</ListView.View>
+	</ListView>
+</UserControl>

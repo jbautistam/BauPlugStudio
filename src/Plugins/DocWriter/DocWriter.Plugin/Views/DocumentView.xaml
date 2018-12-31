@@ -1,0 +1,232 @@
+﻿<UserControl x:Class="Bau.Plugins.DocWriter.Views.DocumentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+						 xmlns:MVVMTreeItems="clr-namespace:Bau.Libraries.MVVM.ViewModels.TreeItems;assembly=BauMVVM"
+						 xmlns:my="clr-namespace:Bau.Plugins.DocWriter.Views.UC"  
+						 mc:Ignorable="d" d:DesignHeight="528" d:DesignWidth="1364">
+	<UserControl.InputBindings>
+		<KeyBinding Modifiers="Control" Key="P" 
+                Command="{Binding Path=InstructionCommand}"
+								CommandParameter="p" />
+		<KeyBinding Modifiers="Control" Key="B" 
+                Command="{Binding Path=InstructionCommand}"
+								CommandParameter="b" />
+		<KeyBinding Modifiers="Control" Key="I" 
+                Command="{Binding Path=InstructionCommand}"
+								CommandParameter="i" />
+		<KeyBinding Modifiers="Control" Key="A" 
+                Command="{Binding Path=InstructionCommand}"
+								CommandParameter="a" />
+		<KeyBinding Modifiers="Control" Key="E" 
+                Command="{Binding Path=InstructionCommand}"
+								CommandParameter="e" />
+	</UserControl.InputBindings>
+	<Grid x:Name="grdData">
+		<Grid.Resources>
+			<BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+		</Grid.Resources>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="3*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<GroupBox Header="Propiedades" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin = "3" >
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<Label Content="Título:" Grid.Row="0" Grid.Column="0"/>
+				<TextBox Grid.Row="0" Grid.Column="1" Margin = "3" Text="{Binding Path=Title,UpdateSourceTrigger=PropertyChanged}" />
+				<Label Content="Elementos hijo:" Grid.Row="0" Grid.Column="2"
+							 Visibility="{Binding Path=IsPageDataVisible, Converter={StaticResource BoolToVisibility}}" />
+				<ComboBox Grid.Row="0" Grid.Column="3" Margin = "3" 
+									ItemsSource="{Binding Path=ComboModeShowChildItems.Items}" 
+									DisplayMemberPath="Text" SelectedValuePath="ID" 	
+									SelectedItem="{Binding Path=ComboModeShowChildItems.SelectedItem}"  
+									Visibility="{Binding Path=IsPageDataVisible, Converter={StaticResource BoolToVisibility}}" />
+				<CheckBox Content="Recursivo" IsChecked="{Binding Path=IsRecursive}" Grid.Row="0" Grid.Column="4" 
+						  Margin = "3" VerticalContentAlignment="Center"
+						  Visibility="{Binding Path=IsPageDataVisible, Converter={StaticResource BoolToVisibility}}" />
+				<Label Content="Descripción:" Grid.Row="1" Grid.Column="0" 
+							 Visibility="{Binding Path=IsDocumentDataVisible, Converter={StaticResource BoolToVisibility}}" />
+				<TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" AcceptsReturn="True" Margin = "3" Text="{Binding Path=Description,UpdateSourceTrigger=PropertyChanged}" 
+								 Visibility="{Binding Path=IsDocumentDataVisible, Converter={StaticResource BoolToVisibility}}" 
+								 MinLines="3" VerticalScrollBarVisibility="Auto" />
+				<Label Content="Palabras clave:" Grid.Row="2" Grid.Column="0" 
+							 Visibility="{Binding Path=IsDocumentDataVisible, Converter={StaticResource BoolToVisibility}}" />
+				<TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" AcceptsReturn="True" Text="{Binding Path=KeyWords,UpdateSourceTrigger=PropertyChanged}" 
+								 Visibility="{Binding Path=IsDocumentDataVisible, Converter={StaticResource BoolToVisibility}}"
+								  Margin = "3" MinLines="3" VerticalScrollBarVisibility="Auto" />
+				<Label Content="Tipo:" Grid.Row="3" Grid.Column="0"/>
+				<TextBlock Grid.Row="3" Grid.Column="1" Margin = "3" Padding="5" Text="{Binding Path=DocumentType}" />
+				<Label Content="Ambito:" Grid.Row="3" Grid.Column="2"
+							 Visibility="{Binding Path=IsSectionDataVisible, Converter={StaticResource BoolToVisibility}}" />
+				<ComboBox Grid.Row="3" Grid.Column="3" Margin = "3" 
+									ItemsSource="{Binding Path=ComboDocumentScope.Items}" 
+									DisplayMemberPath="Text" SelectedValuePath="ID" 	
+									SelectedItem="{Binding Path=ComboDocumentScope.SelectedItem}" 
+									Visibility="{Binding Path=IsSectionDataVisible, Converter={StaticResource BoolToVisibility}}" />
+				<CheckBox Content="Mostrar en Rss" IsChecked="{Binding Path=ShowAtRss}" Grid.Row="3" Grid.Column="4" Margin = "3" VerticalContentAlignment="Center"
+									Visibility="{Binding Path=IsPageDataVisible, Converter={StaticResource BoolToVisibility}}" />
+			</Grid>
+		</GroupBox>
+		<GroupBox Header="Contenido" Grid.Row="1" Grid.Column="0" Margin = "3" Padding="5" >
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<ToolBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" IsTabStop="False">
+					<Button ToolTip="Párrafo" Command="{Binding Path=InstructionCommand}" CommandParameter="p" IsTabStop="False">
+						<Image Source="/DocWriter.Plugin;component/Resources/text_align_justify.png" Width="16" Height="16"/>
+					</Button>
+					<Button ToolTip="Negrita" Command="{Binding Path=InstructionCommand}"
+							CommandParameter="b" IsTabStop="False">
+						<Image Source="/DocWriter.Plugin;component/Resources/text_bold.png" Width="16" Height="16"/>
+					</Button>
+					<Button ToolTip="Cursiva" Command="{Binding Path=InstructionCommand}"
+							CommandParameter="i" IsTabStop="False">
+						<Image Source="/DocWriter.Plugin;component/Resources/text_italic.png" Width="16" Height="16"/>
+					</Button>
+					<Button ToolTip="Hipervínculo" Command="{Binding Path=InstructionCommand}"
+							CommandParameter="a" IsTabStop="False">
+						<Image Source="/DocWriter.Plugin;component/Resources/link.png" Width="16" Height="16"/>
+					</Button>
+					<Button ToolTip="Hipervínculo externo" Command="{Binding Path=InstructionCommand}"
+							CommandParameter="e" IsTabStop="False">
+						<Image Source="/DocWriter.Plugin;component/Resources/link_break.png" Width="16" Height="16"/>
+					</Button>
+					<Button ToolTip="Lista desordenada" Command="{Binding Path=InstructionCommand}"
+							CommandParameter="ul" IsTabStop="False">
+						<Image Source="/DocWriter.Plugin;component/Resources/text_list_bullets.png" Width="16" Height="16"/>
+					</Button>
+					<Button ToolTip="Lista ordenada" Command="{Binding Path=InstructionCommand}"
+							CommandParameter="ol" IsTabStop="False">
+						<Image Source="/DocWriter.Plugin;component/Resources/text_list_numbers.png" Width="16" Height="16"/>
+					</Button>
+					<Separator/>
+					<ComboBox x:Name="cboInstructions" 
+									ItemsSource="{Binding Path=ComboInstructions.Items}" 
+									DisplayMemberPath="Text" SelectedValuePath="ID" FontWeight="Normal"
+									SelectedItem="{Binding Path=ComboInstructions.SelectedItem}" IsTabStop="False" />
+					<Button ToolTip="Mantenimiento de instrucciones" Command="{Binding Path=InstructionsEditCommand}">
+						<Image Source="/BauControls;component/Themes/Images/Properties.gif" Width="16" Height="16" />
+					</Button>
+					<ComboBox x:Name="cboCopyImages" HorizontalAlignment="Right"
+											ItemsSource="{Binding Path=ComboCopyImages.Items}"
+											DisplayMemberPath="Text" SelectedValuePath="ID" FontWeight="Normal"
+											SelectedItem="{Binding Path=ComboCopyImages.SelectedItem}" IsTabStop="False"
+											Visibility="{Binding Path=IsPageTagDataVisible, Converter={StaticResource BoolToVisibility}}" />
+				</ToolBar>
+				<my:ctlEditor x:Name="udtEditor" TextChanged="udtEditor_Changed" InsertInstructionRequired="udtEditor_InsertInstructionRequired" FontWeight="Normal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" />
+				<Label Content="Imagen:" Grid.Row="2" Grid.Column="0" Margin = "3" 
+							 Visibility="{Binding Path=IsPageTagDataVisible, Converter={StaticResource BoolToVisibility}}" />
+				<my:ctlSearchPage x:Name="udtImage" Page="{Binding Path=UrlImageSummary}"  Grid.Row="2" Grid.Column="1"
+													Visibility="{Binding Path=IsPageTagDataVisible, Converter={StaticResource BoolToVisibility}}" AllowDrop="True"
+													 Margin = "3" />
+				<Button Margin = "3" Padding="5" VerticalContentAlignment="Center" Command="{Binding Path=PasteImageCommand}" Grid.Row="2" Grid.Column="3" FontWeight="Normal"
+								Visibility="{Binding Path=IsPageTagDataVisible, Converter={StaticResource BoolToVisibility}}" >
+					<StackPanel Orientation="Horizontal">
+						<Image Source="/BauControls;component/Themes/Images/Paste.png"></Image>
+						<TextBlock>Pegar imagen</TextBlock>
+					</StackPanel>
+				</Button>
+			</Grid>
+		</GroupBox>
+		<GridSplitter Grid.Row="1" Grid.Column="0" Height="Auto" Width="3" ResizeDirection="Columns" HorizontalAlignment="Right"/>
+		<TabControl Grid.Row="1" Grid.Column="1" Margin = "3" >
+			<TabItem Header="Etiquetas">
+				<TreeView x:Name="trvTags" ItemsSource="{Binding Path=TreeTags.Nodes}" Margin = "3" >
+					<TreeView.ItemContainerStyle>
+						<Style TargetType="{x:Type TreeViewItem}">
+							<Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+							<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+							<!--
+					<Style.Triggers>
+						<Trigger Property="IsSelected" Value="True">
+							<Setter Property="FontWeight" Value="Bold" />
+						</Trigger>
+					</Style.Triggers>
+-->
+						</Style>
+					</TreeView.ItemContainerStyle>
+					<TreeView.Resources>
+						<HierarchicalDataTemplate DataType="{x:Type MVVMTreeItems:TreeViewItemViewModel}" ItemsSource="{Binding Path=Children}">
+							<StackPanel Orientation="Horizontal">
+								<Image Width="16" Height="16" Margin="3,0" Source="/BauControls;component/Themes/Images/Tag.png" />
+								<CheckBox IsChecked="{Binding Path=IsChecked}" />
+								<TextBlock Text="{Binding Path=Text}" />
+							</StackPanel>
+						</HierarchicalDataTemplate>
+					</TreeView.Resources>
+				</TreeView>
+			</TabItem>
+			<TabItem Header="Páginas">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<ToolBar Grid.Row="0" Grid.Column="0">
+						<Button Command="{Binding Path=ListChildPages.NewItemCommand}" ToolTip="Añadir">
+							<Image Source="/BauControls;component/Themes/Images/NewItem.png" />
+						</Button>
+						<Button Command="{Binding Path=ListChildPages.DeleteItemCommand}" ToolTip="Borrar">
+							<Image Source="/BauControls;component/Themes/Images/Delete.png" />
+						</Button>
+					</ToolBar>
+					<ListView ItemsSource="{Binding Path=ListChildPages.ListItems}" Grid.Row="1" Grid.Column="0" Margin = "3" >
+						<ListView.InputBindings>
+							<KeyBinding Key="Del" Command="{Binding Path=ListChildPages.DeleteItemCommand}" />
+						</ListView.InputBindings>
+						<ListView.ItemContainerStyle>
+							<Style TargetType="{x:Type ListViewItem}">
+								<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+							</Style>
+						</ListView.ItemContainerStyle>
+
+						<ListView.View>
+							<GridView>
+								<GridViewColumn Width="550" Header="Página">
+									<GridViewColumn.CellTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Path=Text}" />
+										</DataTemplate>
+									</GridViewColumn.CellTemplate>
+								</GridViewColumn>
+							</GridView>
+						</ListView.View>
+					</ListView>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Plantillas">
+				<my:ctlTemplates x:Name="udtTemplates" DataContext="{Binding Path=Templates}" Margin = "3" />
+			</TabItem>
+		</TabControl>
+	</Grid>
+</UserControl>

@@ -1,0 +1,75 @@
+﻿<Window xmlns:Files="clr-namespace:Bau.Controls.Files;assembly=BauControls"  
+				x:Class="Bau.Plugins.DataBaseStudio.Views.Reports.ReportGenerateView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				xmlns:Connections="clr-namespace:Bau.Plugins.DataBaseStudio.Views.UC.Connections"
+        Title="Generación de informe" Height="300" Width="663" ResizeMode="NoResize" ShowInTaskbar="False" 
+				WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<GroupBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin = "3" Header="Informe">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Label Content="Nombre:" Grid.Row="0" Grid.Column="0" />
+				<TextBlock Grid.Row="0" Grid.Column="1" Margin = "3" Text="{Binding Path=Name}" />
+				<Label Content="Descripción:" Grid.Row="1" Grid.Column="0"/>
+				<TextBlock Grid.Row="1" Grid.Column="1" Margin = "3" Text="{Binding Path=Description}" />
+			</Grid>
+		</GroupBox>
+		<GroupBox Header="Parámetros de generación de informe" Margin = "3" Grid.Row="1" Grid.Column="0">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Label Content="Parámetros:" Grid.Row="0" Grid.Column="0" />
+				<ComboBox Grid.Row="0" Grid.Column="1" Margin = "3" 
+									ItemsSource="{Binding Path=ComboExecutionParameters.Items}" 
+									DisplayMemberPath="Text" SelectedValuePath="ID" 	
+									SelectedItem="{Binding Path=ComboExecutionParameters.SelectedItem}" />
+				<Label Content="Salida:" Grid.Row="1" Grid.Column="0" />
+				<ComboBox Grid.Row="1" Grid.Column="1" Margin = "3" 
+									ItemsSource="{Binding Path=ComboOutputMode.Items}" 
+									DisplayMemberPath="Text" SelectedValuePath="ID" 	
+									SelectedItem="{Binding Path=ComboOutputMode.SelectedItem}" />
+				<Label Content="Archivo:" Grid.Row="2" Grid.Column="0" />
+				<Files:FileSelect Grid.Column="1" Grid.Row="2"  Margin = "3" FileName="{Binding Path=FileName, UpdateSourceTrigger=PropertyChanged}" 
+													Mode="Save" Mask="{Binding Path=MaskFiles}" />
+			</Grid>
+		</GroupBox>
+		<!-- Botones -->
+		<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+			<Button Margin = "3" Padding="5" VerticalAlignment="Center" IsDefault="True" Command="{Binding Path=SaveCommand}">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauControls;component/Themes/Images/Accept.png" />
+					<TextBlock>Generar</TextBlock>
+				</StackPanel>
+			</Button>
+			<Button Margin = "3" Padding="5" VerticalAlignment="Center" IsCancel="True">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauControls;component/Themes/Images/Delete.png" />
+					<TextBlock>Cancelar</TextBlock>
+				</StackPanel>
+			</Button>
+		</StackPanel>
+	</Grid>
+</Window>

@@ -1,0 +1,92 @@
+﻿<Window xmlns:Files="clr-namespace:Bau.Controls.Files;assembly=BauControls"  
+				x:Class="Bau.Plugins.SourceCodeDocumenter.Views.Documenter.ProjectFileView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Datos del proyecto" ResizeMode="NoResize" ShowInTaskbar="False" 
+				WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow"
+				Width="600" Height="390">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<GroupBox Grid.Column="0" Grid.Row="0" Header="Propiedades" Margin = "3" >
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"></RowDefinition>
+					<RowDefinition Height="*"></RowDefinition>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"></ColumnDefinition>
+					<ColumnDefinition Width="*"></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+				<Label Content="Nombre:" Grid.Row="0" Grid.Column="0" />
+				<TextBox Grid.Row="0" Grid.Column="1" Margin = "3" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" />
+				<Label Content="Descripción:" Grid.Row="1" Grid.Column="0"/>
+				<TextBox Grid.Row="1" Grid.Column="1" Margin = "3" Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}" />
+			</Grid>
+		</GroupBox>
+
+		<GroupBox Grid.Column="0" Grid.Row="1" Header="Directorios" Margin = "3" >
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"></RowDefinition>
+					<RowDefinition Height="Auto"></RowDefinition>
+					<RowDefinition Height="Auto"></RowDefinition>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"></ColumnDefinition>
+					<ColumnDefinition Width="*"></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+				<Label Content="Plantilla:" Grid.Row="0" Grid.Column="0"/>
+				<Files:PathSelect Grid.Row="0" Grid.Column="1" Margin = "3" PathName="{Binding Path=PathTemplates}" />
+				<Label Content="Páginas:" Grid.Row="1" Grid.Column="0"/>
+				<Files:PathSelect Grid.Row="1" Grid.Column="1" Margin = "3" PathName="{Binding Path=PathPages}" />
+				<Label Content="Generación:" Grid.Row="2" Grid.Column="0"/>
+				<Files:PathSelect Grid.Row="2" Grid.Column="1" Margin = "3" PathName="{Binding Path=PathGenerate}" />
+			</Grid>
+		</GroupBox>
+
+		<GroupBox Grid.Column="0" Grid.Row="2" Header="Parámetros de documentación" Margin = "3" >
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"></RowDefinition>
+					<RowDefinition Height="Auto"></RowDefinition>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"></ColumnDefinition>
+					<ColumnDefinition Width="*"></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+				<CheckBox Content="Documentar estructuras públicas" Margin = "3" Grid.Row="0" Grid.Column="0" 
+									IsChecked="{Binding Path=ShowPublic}" />
+				<CheckBox Content="Documentar estructuras internas" Margin = "3" Grid.Row="0" Grid.Column="1" 
+									IsChecked="{Binding Path=ShowInternal}" />
+				<CheckBox Content="Documentar estructuras protegidas" Margin = "3" Grid.Row="2" Grid.Column="0" 
+									IsChecked="{Binding Path=ShowProtected}" />
+				<CheckBox Content="Documentar estructuras privadas" Margin = "3" Grid.Row="1" Grid.Column="1" 
+									IsChecked="{Binding Path=ShowPrivate}" />
+			</Grid>
+		</GroupBox>
+
+		<!-- Botones -->
+		<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right">
+			<Button Margin = "3" Padding="5" IsDefault="True" Command="{Binding Path=SaveCommand}">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauControls;component/Themes/Images/Accept.png" />
+					<TextBlock>Grabar</TextBlock>
+				</StackPanel>
+			</Button>
+			<Button Margin = "3" Padding="5" IsCancel="True">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauControls;component/Themes/Images/Delete.png" />
+					<TextBlock>Cancelar</TextBlock>
+				</StackPanel>
+			</Button>
+		</StackPanel>
+	</Grid>
+</Window>

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D38B3DC4-ECC1-4861-9D3A-835791E4E6EE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bau.Libraries.LibDocWriter.Processor</RootNamespace>
+    <AssemblyName>LibDocWriter.Processor</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Errors\ErrorMessage.cs" />
+    <Compile Include="Errors\ErrorsMessageCollection.cs" />
+    <Compile Include="EventArguments\EventArgsProgress.cs" />
+    <Compile Include="Generator.cs" />
+    <Compile Include="Compiler\NHamlCompilerWrapper.cs" />
+    <Compile Include="Pages\DocumentTargetModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pages\FilesIndexComposition.cs" />
+    <Compile Include="Pages\SectionSourceModel.cs" />
+    <Compile Include="Pages\SectionSourceModelCollection.cs" />
+    <Compile Include="Pages\FileTargetModel.cs" />
+    <Compile Include="Pages\FileTargetModelCollection.cs" />
+    <Compile Include="Steps\CompilerData.cs" />
+    <Compile Include="Steps\RssSteps\StepRssProcessor.cs" />
+    <Compile Include="Steps\SitemapSteps\SitemapEntriesCollection.cs" />
+    <Compile Include="Steps\SitemapSteps\SitemapEntry.cs" />
+    <Compile Include="Steps\SitemapSteps\StepSitemapProcessor.cs" />
+    <Compile Include="Steps\AbstractBaseSteps.cs" />
+    <Compile Include="Steps\CategoriesSteps\AbstractBaseStepsCategories.cs" />
+    <Compile Include="Steps\CategoriesSteps\StepTagsCompileProcessor.cs" />
+    <Compile Include="Steps\CategoriesSteps\StepSitemapCompileProcessor.cs" />
+    <Compile Include="Steps\AdditionalSteps\StepCompileScssProcessor.cs" />
+    <Compile Include="Steps\FilesSteps\StepCopyProcessor.cs" />
+    <Compile Include="Steps\FilesSteps\StepLoadFilesProcessor.cs" />
+    <Compile Include="Steps\CategoriesSteps\StepCategoriesCompileProcessor.cs" />
+    <Compile Include="Steps\PagesSteps\StepPagesPostCompileProcessor .cs" />
+    <Compile Include="Steps\PagesSteps\StepPagesCompileProcessor .cs" />
+    <Compile Include="Steps\SectionsSteps\StepSectionsWebProcessor.cs" />
+    <Compile Include="Steps\SectionsSteps\StepSectionsNewsProcessor.cs" />
+    <Compile Include="Steps\PagesSteps\StepPagesPrecompileProcessor.cs" />
+    <Compile Include="Steps\SectionsSteps\StepLoadSectionsProcessor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibDataStructures\src\LibDataStructures.csproj">
+      <Project>{d04b8a79-8470-40b4-b06f-9ab2223194ee}</Project>
+      <Name>LibDataStructures</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibHelper\src\LibHelper.csproj">
+      <Project>{99c49acd-fc70-4c3d-a375-8cae8d3ba521}</Project>
+      <Name>LibHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibMarkup\src\LibMarkup.csproj">
+      <Project>{5517c986-7c58-4294-8c96-63f3ab53f3b1}</Project>
+      <Name>LibMarkup</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Communications\LibFeeds\src\LibFeeds.csproj">
+      <Project>{aadc4b38-34f5-4105-8d02-38f8100279f4}</Project>
+      <Name>LibFeeds</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Compilers\src\NhamlCompiler\LibNHamlCompiler\NhamlCompiler.csproj">
+      <Project>{e8de1b6e-2e22-4d41-a0f5-d39db95ed115}</Project>
+      <Name>NhamlCompiler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Compilers\src\SmallCssCompiler\LibSmallCssCompiler\LibSmallCssCompiler.csproj">
+      <Project>{e5af4b6e-1a68-48ab-b2ce-51b51fc33a7a}</Project>
+      <Name>LibSmallCssCompiler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibDocWriter.Application\LibDocWriter.Application.csproj">
+      <Project>{bc4bad64-6ce0-4e45-8b69-073a298729a7}</Project>
+      <Name>LibDocWriter.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibDocWriter.Model\LibDocWriter.Model.csproj">
+      <Project>{12bba918-d83d-4286-8792-b74d0e28dc9e}</Project>
+      <Name>LibDocWriter.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

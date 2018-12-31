@@ -1,0 +1,75 @@
+﻿<Window x:Class="Bau.Plugins.DocWriter.Views.ReferenceNewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+						 xmlns:MVVMTreeItems="clr-namespace:Bau.Libraries.MVVM.ViewModels.TreeItems;assembly=BauMVVM"
+             mc:Ignorable="d" 
+             d:DesignHeight="371" d:DesignWidth="354" Title="Añadir referencias" ResizeMode="NoResize" 
+						 Width="371" Height="354"
+						 ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" >
+	<Grid Margin = "3" >
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+		<Label Content="Tipo:" Grid.Row="0" Grid.Column="0" />
+		<ComboBox Grid.Row="0" Grid.Column="1" Margin = "3" 
+							ItemsSource="{Binding Path=ComboWebType.Items}"
+							DisplayMemberPath="Text" SelectedValuePath="ID"
+							SelectedItem="{Binding Path=ComboWebType.SelectedItem}" />
+		<Label Content="Proyecto:" Grid.Row="1" Grid.Column="0" />
+		<ComboBox Grid.Row="1" Grid.Column="1" Margin = "3" 
+							ItemsSource="{Binding Path=ComboProjects.Items}"
+							DisplayMemberPath="Text" SelectedValuePath="ID"
+							SelectedItem="{Binding Path=ComboProjects.SelectedItem}" />
+		<TreeView x:Name="trvSections" ItemsSource="{Binding Path=TreeFiles.Nodes}"
+							Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin = "3" >
+			<TreeView.ItemContainerStyle>
+				<Style TargetType="{x:Type TreeViewItem}">
+					<Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+					<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+					<!--
+					<Style.Triggers>
+						<Trigger Property="IsSelected" Value="True">
+							<Setter Property="FontWeight" Value="Bold" />
+						</Trigger>
+					</Style.Triggers>
+-->
+				</Style>
+			</TreeView.ItemContainerStyle>
+			<TreeView.Resources>
+				<HierarchicalDataTemplate DataType="{x:Type MVVMTreeItems:TreeViewItemViewModel}" ItemsSource="{Binding Path=Children}">
+					<StackPanel Orientation="Horizontal">
+						<Image Width="16" Height="16" Margin="3,0" Source="/BauControls;component/Themes/Images/Section.png" />
+						<CheckBox IsChecked="{Binding Path=IsChecked}" />
+						<TextBlock Text="{Binding Path=Text}" />
+					</StackPanel>
+				</HierarchicalDataTemplate>
+			</TreeView.Resources>
+		</TreeView>
+		<CheckBox IsChecked="{Binding Path=IsRecursive}" Content="Copia recursiva" VerticalAlignment="Center"
+							Grid.Row="3" Grid.Column="0" Margin = "3" />
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+							Grid.Row="3" Grid.Column="1" >
+			<Button Margin = "3" Padding="5" VerticalContentAlignment="Center" IsDefault="True" Command="{Binding Path=SaveCommand}">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauControls;component/Themes/Images/Accept.png"></Image>
+					<TextBlock>Grabar</TextBlock>
+				</StackPanel>
+			</Button>
+			<Button Margin = "3" Padding="5" VerticalContentAlignment="Center" IsCancel="True">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="/BauControls;component/Themes/Images/Delete.png"></Image>
+					<TextBlock>Cancelar</TextBlock>
+				</StackPanel>
+			</Button>
+		</StackPanel>	
+	</Grid>
+</Window>

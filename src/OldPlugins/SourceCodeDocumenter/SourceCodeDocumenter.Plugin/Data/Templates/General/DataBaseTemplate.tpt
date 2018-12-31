@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h1 class="panel-title">{{Name}}</h1>
+		</div>
+		<div class="panel-body">
+			<p>Servidor {{Server}}</p>
+		</div>
+	</div>
+
+	<IfExists StructType = "Table">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Tablas</h3>
+			</div>
+			<div class="panel-body">
+				<table class ="table table-hover">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType ="Table">
+							<tr>
+								<td>{{Name|Link}}</td>
+								<td>{{Summary}}</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType = "View">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Vistas</h3>
+			</div>
+			<div class="panel-body">
+				<table class ="table table-hover">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Check</th>
+							<th>Modificable</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType ="View">
+							<tr>
+								<td>{{Name|Link}}</td>
+								<td>{{CheckOption}}</td>
+								<td>{{IsUpdatable}}</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType = "Procedure">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Procedimientos</h3>
+			</div>
+			<div class="panel-body">
+				<table class ="table table-hover">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType ="Procedure">
+							<tr>
+								<td>{{Name|Link}}</td>
+								<td>{{Summary}}</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType = "Function">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Funciones</h3>
+			</div>
+			<div class="panel-body">
+				<table class ="table table-hover">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType ="Function">
+							<tr>
+								<td>{{Name|Link}}</td>
+								<td>{{Summary}}</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+</Page>

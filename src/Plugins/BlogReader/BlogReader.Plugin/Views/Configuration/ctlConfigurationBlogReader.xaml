@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Bau.Plugins.BlogReader.Views.Configuration.ctlConfigurationBlogReader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="203" d:DesignWidth="490"
+						 xmlns:my="clr-namespace:Bau.Controls.Files;assembly=BauControls" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>			
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Label Content="Directorio:" Grid.Column="0" Grid.Row="0" />
+		<my:PathSelect Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Margin = "3" PathName="{Binding Path=PathBlogs}" />
+		<Label Content="Minutos entre descarga de blogs:" Grid.Row="1" Grid.Column="0" />
+		<xctk:IntegerUpDown Grid.Column="1" Grid.Row="1" Margin = "3" Value="{Binding Path=MinutesBetweenDownload}" FontWeight="Normal" />
+		<CheckBox Content="Descarga automática de blogs" IsChecked="{Binding Path=DownloadEnabled}" 
+							Grid.Row="1" Grid.Column="2" Margin = "3" />
+		<Label Content="Entradas por página:" Grid.Row="2" Grid.Column="0" />
+		<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin = "3" Value="{Binding Path=RecordsPerPage}" FontWeight="Normal" />
+	</Grid>
+</UserControl>

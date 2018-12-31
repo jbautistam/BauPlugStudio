@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6F837C5A-7C62-4D9C-A72B-C22A3AC0B814}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Bau.Libraries.FullDatabaseStudio.Plugin</RootNamespace>
+    <AssemblyName>FullDatabaseStudio.Plugin</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\ViewsController.cs" />
+    <Compile Include="Converters\FileIconConverter.cs" />
+    <Compile Include="FullDatabaseStudioPlugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Views\Configuration\ctlConfiguration.xaml.cs">
+      <DependentUpon>ctlConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Connections\DataBaseConnectionView.xaml.cs">
+      <DependentUpon>DataBaseConnectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Deployments\DeploymentSelectView.xaml.cs">
+      <DependentUpon>DeploymentSelectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Deployments\DeploymentView.xaml.cs">
+      <DependentUpon>DeploymentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Queries\QueryView.xaml.cs">
+      <DependentUpon>QueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\ReportView.xaml.cs">
+      <DependentUpon>ReportView.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Column.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit">
+      <Version>3.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Composition">
+      <Version>1.0.31</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\Configuration\ctlConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Connections\DataBaseConnectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Deployments\DeploymentSelectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Deployments\DeploymentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Queries\QueryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reports\ReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Project.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\File.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Connection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Function.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\FunctionsRoot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\PivotTable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Process.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Query.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Routines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\StoredProcedure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\StoredProceduresRoot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\TablesRoot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\View.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\ViewsRoot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Images\Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Help\Report.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Template\ImportScript.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Themes\Images\Deployment.png" />
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\Controls\BauControls\src\BauControls.csproj">
+      <Project>{c4411755-086a-464b-a62d-be0ccd18efb9}</Project>
+      <Name>BauControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Controls\BauMvvmControls\src\BauMvvmControls.csproj">
+      <Project>{4b98b2a6-084c-497f-92c8-18211913e93c}</Project>
+      <Name>BauMvvmControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Controls\CodeEditor\src\CodeEditor.csproj">
+      <Project>{4e07699f-5bd6-41c5-a42e-928a2aa332fc}</Project>
+      <Name>CodeEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\BauMvvm\src\BauMvvm.ViewModels\BauMvvm.ViewModels.csproj">
+      <Project>{42d1bb98-90e1-4a72-9e0b-c827adcb13c5}</Project>
+      <Name>BauMvvm.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\BauMvvm\src\BauMvvm.Views\BauMvvm.Views.csproj">
+      <Project>{ffa90cce-8c07-4a0f-a90c-3ed1b7b81e9c}</Project>
+      <Name>BauMvvm.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\Plugins\src\Plugins.ViewModels\Plugins.ViewModels.csproj">
+      <Project>{5aa6a4e1-a1d3-47f6-a352-97df9db87fb6}</Project>
+      <Name>Plugins.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Architecture\Plugins\src\Plugins.Views\Plugins.Views.csproj">
+      <Project>{aa000af7-9f53-426b-9a91-154d11513fa9}</Project>
+      <Name>Plugins.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Modules\Libraries\Common\LibDataStructures\src\LibDataStructures.csproj">
+      <Project>{d04b8a79-8470-40b4-b06f-9ab2223194ee}</Project>
+      <Name>LibDataStructures</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\PlugStudioProjects\PlugStudioProjects.ViewModel\PlugStudioProjects.csproj">
+      <Project>{dcb021ef-004b-48d3-9a75-fcef6be30c3c}</Project>
+      <Name>PlugStudioProjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\PlugStudioProjects\PlugStudioProjects.Views\PlugStudioProjects.Views.csproj">
+      <Project>{8b828680-cf36-442c-b565-c910deeecf7a}</Project>
+      <Name>PlugStudioProjects.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\DatabaseStudio.Models\DatabaseStudio.Models.csproj">
+      <Project>{fe9d3650-25f1-41e4-9304-19c1bb5e1bc4}</Project>
+      <Name>DatabaseStudio.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseStudio.ViewModels\DatabaseStudio.ViewModels.csproj">
+      <Project>{36a3386f-9eb3-42a8-b4ee-c7e0dfd82ebf}</Project>
+      <Name>DatabaseStudio.ViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

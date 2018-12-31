@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="Bau.Libraries.PlugStudioProjects.Views.TreeExplorerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:ViewModel="clr-namespace:Bau.Libraries.PlugStudioProjects.ViewModels;assembly=PlugStudioProjects"
+			 xmlns:Converter="clr-namespace:Bau.Libraries.BauMvvm.Views.Converters;assembly=BauMvvm.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<Grid>
+		<Grid.Resources>
+			<Converter:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter"/>
+			<Converter:MVVMColorConverter x:Key="MVVMColorConverter"/>
+		</Grid.Resources>
+		<TreeView x:Name="trvProject" AllowDrop="True"
+				SelectedItemChanged="trvExplorer_SelectedItemChanged"
+				MouseDoubleClick="trvExplorer_MouseDoubleClick" MouseDown="trvExplorer_MouseDown"
+				ContextMenu="{DynamicResource ResourceKey=mnuExplorer}"
+				PreviewMouseLeftButtonDown="trvExplorer_PreviewMouseLeftButtonDown"
+				PreviewMouseMove="trvExplorer_PreviewMouseMove" Drop="trvExplorer_Drop" 
+				DragEnter="trvExplorer_DragEnter" ContextMenuOpening="trvExplorer_ContextMenuOpening"
+				>
+			<TreeView.Resources>
+				<!-- Plantilla de los nodos -->
+				<HierarchicalDataTemplate DataType="{x:Type ViewModel:ExplorerProjectNodeViewModel}" ItemsSource="{Binding Children}">
+					<StackPanel Orientation="Horizontal">
+						<Image Width="20" Height="20" Margin="3,0" Source="{Binding Path=Icon}" />
+						<TextBlock Text="{Binding Text}" FontWeight="{Binding IsBold,Converter={StaticResource BoolToFontWeightConverter}}"
+								   Foreground="{Binding Path=Foreground,Converter={StaticResource MVVMColorConverter}}" 
+								   VerticalAlignment="Center"/>
+					</StackPanel>
+				</HierarchicalDataTemplate>
+				<!-- Menú -->
+				<ContextMenu x:Key="mnuExplorer">
+					<MenuItem Header="Nuevo" x:Name="mnuItemsNew">
+						<MenuItem.Icon>
+							<Image Width="16" Height="16" Source="Themes/Images/NewItem.png" />
+						</MenuItem.Icon>
+						<MenuItem Header="Carpeta" Command="{Binding Path=NewFolderCommand}" >
+							<MenuItem.Icon>
+								<Image Width="16" Height="16" Source="Themes/Images/Folder.png" />
+							</MenuItem.Icon>
+						</MenuItem>
+						<MenuItem Header="Archivo" Command="{Binding Path=NewFileCommand}" >
+							<MenuItem.Icon>
+								<Image Width="16" Height="16" Source="Themes/Images/File.png" />
+							</MenuItem.Icon>
+						</MenuItem>
+						<Separator x:Name="mnuOptNewItem" />
+					</MenuItem>
+					<MenuItem Header="Abrir" Command="{Binding PropertiesCommand}">
+						<MenuItem.Icon>
+							<Image Width="16" Height="16" Source="Themes/Images/Properties.gif" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator />
+					<MenuItem Header="Copiar" Command="{Binding CopyCommand}">
+						<MenuItem.Icon>
+							<Image Width="16" Height="16" Source="Themes/Images/Copy.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<MenuItem Header="Pegar" Command="{Binding PasteCommand}">
+						<MenuItem.Icon>
+							<Image Width="16" Height="16" Source="Themes/Images/Paste.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<MenuItem Header="Borrar" Command="{Binding DeleteCommand}">
+						<MenuItem.Icon>
+							<Image Width="16" Height="16" Source="Themes/Images/Delete.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator x:Name="mnuOptOptions" />
+				</ContextMenu>
+			</TreeView.Resources>
+			<TreeView.ItemContainerStyle>
+				<Style TargetType="{x:Type TreeViewItem}">
+					<Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}" />
+					<Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+					<Setter Property="Padding" Value="1" />
+					<!--
+					<Style.Resources>
+						<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{StaticResource HighlightTextColor}"/>
+						<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBackgroundColor}"/>
+					</Style.Resources>
+					-->
+				</Style>
+			</TreeView.ItemContainerStyle>
+			<TreeView.InputBindings>
+				<KeyBinding Key="Enter" Command="{Binding PropertiesCommand}" />
+				<KeyBinding Key="Delete" Command="{Binding DeleteCommand}" />
+			</TreeView.InputBindings>
+		</TreeView>
+	</Grid>
+</UserControl>

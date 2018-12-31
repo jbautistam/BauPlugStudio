@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Bau.Plugins.FtpManager.Views.FtpExplorer.UC.FtpConnectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bau.Plugins.FtpManager.Views.FtpExplorer.UC"
+			 xmlns:ViewModel ="clr-namespace:Bau.Libraries.FtpManager.ViewModel.FtpExplorer.FtpConnectionItems;assembly=FtpManager.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<Grid x:Name="grdData">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="2*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<TreeView x:Name="trvExplorer" Grid.Column="0" Grid.Row="0" AllowDrop="False" Margin = "3" 
+							SelectedItemChanged="trvExplorer_SelectedItemChanged"
+							MouseDown="trvExplorer_MouseDown"
+							ItemsSource="{Binding Path=Nodes}">
+			<TreeView.ItemContainerStyle>
+				<Style TargetType="{x:Type TreeViewItem}">
+					<Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+					<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+				</Style>
+			</TreeView.ItemContainerStyle>
+
+			<TreeView.InputBindings>
+				<KeyBinding Key="Enter" Command="{Binding Path=PropertiesCommand}" />
+				<KeyBinding Key="Del" Command="{Binding Path=DeleteCommand}" />
+			</TreeView.InputBindings>
+
+			<TreeView.Resources>
+				<HierarchicalDataTemplate DataType="{x:Type ViewModel:FtpFileNodeViewModel }" ItemsSource="{Binding Path=Children}">
+					<StackPanel Orientation="Horizontal">
+						<Image Width="16" Height="16" Margin="3,0" Source="{Binding Path=Image}" />
+						<TextBlock Text="{Binding Path=Text}" FontWeight="{Binding Path=FontWeightMode}" />
+					</StackPanel>
+				</HierarchicalDataTemplate>
+			</TreeView.Resources>
+		</TreeView>
+
+		<GridSplitter Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Height="4" Background="Red"/>
+
+		<ListView x:Name="lswFiles" ItemsSource="{Binding Path=Files.ListItems}" Grid.Row="2" Grid.Column="0" Margin = "3" >
+			<ListView.ItemContainerStyle>
+				<Style TargetType="{x:Type ListViewItem}">
+					<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+				</Style>
+			</ListView.ItemContainerStyle>
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Width="150" Header="Archivo">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Path=FileName}" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+					<GridViewColumn Width="75" Header="F. creación">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Path=DateCreate, StringFormat={}{0:dd-MM-yyyy HH:mm}}" TextAlignment="Center" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+					<GridViewColumn Width="75" Header="Tamaño">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Path=Size, StringFormat={}{0:#.##0}}" TextAlignment="Right" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+				</GridView>
+			</ListView.View>
+		</ListView>
+	</Grid>
+</UserControl>

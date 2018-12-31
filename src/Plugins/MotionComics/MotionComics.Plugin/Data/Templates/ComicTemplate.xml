@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Comic Width="1000" Height="2000">
+
+	<!-- Se pueden incluir recursos externos -->
+	<!-- <Include FileName ="_ResourcesBalloon.xml" /> -->
+
+	<!-- Atributos del cómic -->
+	<Title></Title>
+	<Summary></Summary>
+	<ThumbFileName></ThumbFileName>
+
+	<!-- Recursos internos del cómic -->
+	<!--
+	<Resources>
+		<Image Key="Clave">
+			<FileName>FileName</FileName>
+		</Image>
+		Entre los recursos también se pueden incluir datos de Frame, Shape, Text, Image, Brush ...
+	</Resources>
+	--> 
+
+	<!-- Página del cómic -->
+	<Page>
+		<Frame />
+		<Balloon />
+		<Image />
+		<Text />
+		<TimeLine />
+	</Page>
+
+	<!-- 
+		Datos de un frame
+		****************************************************************************************************************
+		<Frame Key="Clave" Top="double" Left="double" Width="double" Height="double" Visible="boolean">
+			<Shape ...>
+			<Brush ...>
+			<Pen ...>
+		</Frame>
+
+		Viñeta
+		****************************************************************************************************************
+		<Balloon Key="Clave" [ResourceKey="Clave del recurso"] Top="double" Left="double" Width="double" Height="double"
+						 [Visible="boolean"] [Opacity="double"]>
+			<Brush ...>
+			<Pen ...>
+			<Shape ...>
+			<Content Language="sp">
+				<Text ...>
+			</Content>
+		</Balloon>
+
+		Figura (en un Frame o un Balloon)
+		****************************************************************************************************************
+		<Shape Key="Clave" [ResourceKey="Clave del recurso"] >
+			<Figure FillRull="NonZero|EvenOdd"> -> Múltiple
+				<Data>
+					PathData
+				</Data>
+			</Figure>
+		</Shape>
+
+		Imagen
+		****************************************************************************************************************
+		<Image Key="Clave" [ResourceKey="Clave del recurso"] [FileName="filename"] Top="290" Left="150" [Width="double" Height="double"] 
+					 Stretch="None|Fill|Uniform|UniformToFill"
+					 [Visible="boolean"] [Opacity="double"]/>
+
+		Texto
+		****************************************************************************************************************
+		<Text Top="double" Left="double" Width="double" Height="double"
+					Bold="boolean" Italic="boolean"
+					Font="font" Size="double"
+					Color="color">
+			string
+		</Text>
+	
+		Lápices
+		****************************************************************************************************************
+		<Pen Color="Color" Width="double" />
+
+		Tipos de brochas
+		****************************************************************************************************************
+		<SolidBrush Key="Clave" ResourceKey="Clave de recurso" Color="color" />
+		<ImageBrush Key="Clave" ResourceKey="Clave de recurso" FileName="filename" 
+								Top="double" Left="double" Width="double" Height="double" 
+					/>
+		<LinearBrush Key="Clave" Start="x,y" End="x,y" SpreadMethod="Reflect | Repeat | Pad">
+			<Stop Color="Color" Offset="double"/> -> Múltiple
+		</LinearBrush>
+		<RadialBrush Key="Clave" ResourceKey="Clave de recurso" Center="x,y" 
+								 RadiusX="double" RadiusY="double" Origin="x,y">
+			<Stop Color="Color" Offset="double"/> -> Múltiple
+		</RadialBrush>
+
+		Timeline 
+		****************************************************************************************************************
+		<TimeLine Start="seconds" Duration="seconds">
+			<Rotate Key="Clave" OriginX="double" OriginY="double" Angle="double" 
+							[AccelerationRatio="0..1"] [DecelerationRatio="0..1"] [Start="0"] [Duration="3"] />
+			<Zoom Key="Clave" OriginX="0..1" OriginY="0..1" ScaleX="double" ScaleY="double" 
+							[AccelerationRatio="0..1"] [DecelerationRatio="0..1"] [Start="0"] [Duration="3"] />
+			<Show Key="Clave" [Opacity="0..1"] [Visible="boolean"] 
+							[AccelerationRatio="0..1"] [DecelerationRatio="0..1"] [Start="0"] [Duration="3"] />
+			<Translate Key="Clave" [Top="double"] [Left="0"] [Stretch ="None | Fill | Uniform | UniformToFill"] 
+							[AccelerationRatio="0..1"] [DecelerationRatio="0..1"] [Start="0"] [Duration="3"] />
+			<Resize Key="Clave" Width ="double" Height="double" [Stretch ="None | Fill | Uniform | UniformToFill"] />
+			<Path Key="Clave" RotateWithTangent="boolean">
+				PathData
+			</Path>
+		</TimeLine>
+
+		Dentro de una acción del timeline pueden existir varias funciones Ease
+		****************************************************************************************************************
+		<BounceEase Bounces="2" EasingMode="EaseIn | EaseOut | EaseInOut" Bounciness="0.5" />
+		<CircleEase EasingMode="EaseIn | EaseOut | EaseInOut" />
+		<BackEase Amplitude="0.3" EasingMode="EaseIn | EaseOut | EaseInOut" />
+		<CubicEase EasingMode="EaseIn | EaseOut | EaseInOut" />
+		<ElasticEase Oscillations="3" Springiness="1" EasingMode="EaseIn | EaseOut | EaseInOut" />
+		<ExponentialEase Exponent="6" EasingMode="EaseIn | EaseOut | EaseInOut" />
+		<PowerEase Power="20" EasingMode="EaseIn | EaseOut | EaseInOut" />
+		<QuadraticEase EasingMode="EaseIn | EaseOut | EaseInOut" />
+		<QuarticEase EasingMode="EaseIn | EaseOut | EaseInOut" />
+		<SineEase EasingMode="EaseIn | EaseOut | EaseInOut" />
+	-->
+</Comic>

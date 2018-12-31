@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h1 class="panel-title">{{StructType}} {{Name}}</h1>
+		</div>
+		<div class="panel-body">
+			<p>{{Summary}}</p>
+		</div>
+	</div>
+
+	<IfExists StructType = "Column">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Columnas</h3>
+			</div>
+			<div class="panel-body">
+				<table class ="table table-hover">
+					<thead>
+						<tr>
+							<th colspan="2">Clave</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+							<th>Tipo</th>
+							<th>Null</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType ="Column">
+							<tr>
+								<td>
+									<Switch ValueType="IsIdentity">
+										<Case Value="True">
+											<img src="##Images/PrimaryKey.png##" alt="Clave principal"/>
+										</Case>
+									</Switch>
+								</td>
+								<td>
+									<Switch ValueType="IsForeignKey">
+										<Case Value="True">
+											<img src="##Images/ForeignKey.png##" alt="Clave foránea"/>
+										</Case>
+									</Switch>
+								</td>
+								<td>{{Name}}</td>
+								<td>{{Summary}}</td>
+								<td>{{Type}}</td>
+								<td>
+									<Switch ValueType="IsNullable">
+										<Case Value="True">
+											<span>Sí</span>
+										</Case>
+									</Switch>
+								</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType = "Constraint">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Restricciones</h3>
+			</div>
+			<div class="panel-body">
+				<table class ="table table-hover">
+					<thead>
+						<tr>
+							<th>Tabla</th>
+							<th>Columna</th>
+							<th>Tipo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType ="Constraint">
+							<tr>
+								<td>{{Table}}</td>
+								<td>{{Column}}</td>
+								<td>{{Type}}</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfValue ValueType="Prototype">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Definición</h3>
+			</div>
+			<div class="panel-body">
+				<p>{{Prototype}}</p>
+			</div>
+		</div>
+	</IfValue>
+
+	<IfExists StructType = "Trigger">
+		<hr/>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Desencadenadores</h3>
+			</div>
+			<div class="panel-body">
+				<table class ="table table-hover">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Insert</th>
+							<th>Update</th>
+							<th>Delete</th>
+							<th>InsteadOf</th>
+							<th>Disabled</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ForEach StructType ="Trigger">
+							<tr>
+								<td>{{Name}}</td>
+								<td>
+									<Switch ValueType="IsExecutionInsertTrigger">
+										<Case Value="True">
+											<span>Sí</span>
+										</Case>
+									</Switch>
+								</td>
+								<td>
+									<Switch ValueType="IsExecutionUpdateTrigger">
+										<Case Value="True">
+											<span>Sí</span>
+										</Case>
+									</Switch>
+								</td>
+								<td>
+									<Switch ValueType="IsExecutionDeleteTrigger">
+										<Case Value="True">
+											<span>Sí</span>
+										</Case>
+									</Switch>
+								</td>
+								<td>
+									<Switch ValueType="IsExecutionInsteadOfTrigger">
+										<Case Value="True">
+											<span>Sí</span>
+										</Case>
+									</Switch>
+								</td>
+								<td>
+									<Switch ValueType="IsExecutionTriggerDisabled">
+										<Case Value="True">
+											<span>Sí</span>
+										</Case>
+									</Switch>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan ="5">{{Prototype}}</td>
+							</tr>
+						</ForEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</IfExists>
+</Page>

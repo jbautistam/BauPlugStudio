@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Page>
+	<IfExists StructType = "Program">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h1 class="panel-title">Proyectos</h1>
+			</div>
+			<div class="panel-body">
+				<ul>
+					<ForEach StructType ="Program">
+						<li>{{Name|Link}}</li>
+					</ForEach>
+				</ul>
+			</div>
+		</div>
+	</IfExists>
+
+	<IfExists StructType ="DataBase">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h1 class="panel-title">Bases de datos</h1>
+			</div>
+			<div class="panel-body">
+				<ul>
+					<ForEach StructType ="DataBase">
+						<li>{{Name|Link}}</li>
+					</ForEach>
+				</ul>
+			</div>
+		</div>
+	</IfExists>
+</Page>

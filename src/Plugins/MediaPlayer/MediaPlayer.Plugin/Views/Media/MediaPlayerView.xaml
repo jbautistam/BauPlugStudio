@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Bau.Plugins.MediaPlayer.Views.Media.MediaPlayerView"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bau.Plugins.MediaPlayer.Views.Converters" 
+            mc:Ignorable="d" 
+            d:DesignHeight="300" d:DesignWidth="300">
+    <Grid x:Name="grdView" Grid.Column="0" Grid.Row="0">
+        <Grid.Resources>
+            <local:MediaFileIconConverter x:Key="MediaFileIconConverter" />
+            <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="16" />
+        </Grid.RowDefinitions>
+        <ToolBarPanel Grid.Column="0" Grid.Row="0">
+            <ToolBar>
+                <Button Command="{Binding Path=PlayCommand}" >
+                    <Image Source="/BauControls;component/Themes/Images/ArrowNext.png" Width="16" Height="16"/>
+                </Button>
+                <Button Command="{Binding Path=StopCommand}" >
+                    <Image Source="/BauControls;component/Themes/Images/Close.png" Width="16" Height="16"/>
+                </Button>
+                <Separator/>
+                <Button Command="{Binding Path=DownloadCommand}" >
+                    <Image Source="/BauControls;component/Themes/Images/Download.png" Width="16" Height="16"/>
+                </Button>
+            </ToolBar>
+        </ToolBarPanel>
+        <ListView Grid.Row="1" Grid.Column="0" 
+                  ItemsSource="{Binding Path=MediaFiles}" SelectionMode="Extended" SelectedItem="{Binding Path=SelectedFile}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="700" Header="Título">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/MediaPlayer.Plugin;component/Resources/attach.png" 
+                                               Visibility="{Binding CanDownload, Converter={StaticResource BoolToVisibilityConverter}}" Width="16" Height="16"/>
+                                    <TextBlock Text="{Binding Title}" Margin="5,0,0,0"  VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" Header="Album" DisplayMemberBinding="{Binding Path=Group}" />
+                    <GridViewColumn Width="200" Header="Archivo" DisplayMemberBinding="{Binding Path=TextFile}" />
+                    <GridViewColumn Width="200" Header="F. alta" DisplayMemberBinding="{Binding Path=CreatedAt}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ProgressBar x:Name="prgMedia" Grid.Row="2" Grid.Column="0" MouseDown="prgMedia_MouseDown"/>
+    </Grid>
+</UserControl>

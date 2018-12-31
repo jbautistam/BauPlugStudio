@@ -1,0 +1,205 @@
+﻿<UserControl xmlns:Files="clr-namespace:Bau.Controls.Files;assembly=BauControls"  
+			 x:Class="Bau.Libraries.FullDatabaseStudio.Plugin.Views.Deployments.DeploymentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:Converter="clr-namespace:Bau.Libraries.BauMvvm.Views.Converters;assembly=BauMvvm.Views"
+			 xmlns:ViewModel="clr-namespace:Bau.Libraries.DatabaseStudio.ViewModels.Projects.Deployments.Scripts;assembly=DatabaseStudio.ViewModels"
+             mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="600">
+	<Grid x:Name="grdData">
+		<Grid.Resources>
+			<Converter:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter"/>
+			<Converter:MVVMColorConverter x:Key="MVVMColorConverter"/>
+		</Grid.Resources>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="2*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<GroupBox Header="Propiedades" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin = "3" >
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Label Content="Nombre:" Grid.Row="0" Grid.Column="0" />
+				<TextBox Grid.Row="0" Grid.Column="1" Margin = "3" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" />
+				<Label Content="Descripción:" Grid.Row="1" Grid.Column="0" />
+				<TextBox Grid.Row="1" Grid.Column="1" Margin = "3" MinLines="3" MaxLines="3"
+								 Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" />
+				<Label Content="Directorio ejecución:" Grid.Row="2" Grid.Column="0" />
+				<Files:PathSelect Grid.Row="2" Grid.Column="1" PathName="{Binding Path=PathScriptsTarget, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
+				<Label Content="Directorio generación archivos:" Grid.Row="3" Grid.Column="0" />
+				<Files:PathSelect Grid.Row="3" Grid.Column="1" PathName="{Binding Path=PathFilesTarget, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
+			</Grid>
+		</GroupBox>
+		<GroupBox Header="Conexiones" Grid.Row="1" Grid.Column="0" Margin="0,0,0,5" Padding="5">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<ToolBar IsHitTestVisible="True" Grid.Row="0" Grid.Column="0">
+					<Button Command="{Binding Path=ConnectionsListViewModel.NewItemCommand}" ToolTip="Nuevo">
+						<Image Source="/BauControls;component/Themes/Images/NewItem.png" />
+					</Button>
+					<Button Command="{Binding Path=ConnectionsListViewModel.DeleteItemCommand}" ToolTip="Borrar">
+						<Image Source="/BauControls;component/Themes/Images/Delete.png" />
+					</Button>
+				</ToolBar>
+				<ListView ItemsSource="{Binding Path=ConnectionsListViewModel.Items}" SelectedItem="{Binding Path=ConnectionsListViewModel.SelectedItem}" Grid.Row="1" Grid.Column="0" Margin = "3" >
+					<ListView.InputBindings>
+						<KeyBinding Key="Insert" Command="{Binding Path=ConnectionsListViewModel.NewItemCommand}" />
+						<KeyBinding Key="Del" Command="{Binding Path=ConnectionsListViewModel.DeleteItemCommand}" />
+					</ListView.InputBindings>
+					<ListView.View>
+						<GridView>
+							<GridViewColumn Width="200" Header="Clave">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBox Width="170" Margin="5" Text="{Binding Path=Key,UpdateSourceTrigger=PropertyChanged}" />
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+							<GridViewColumn Width="200" Header="Conexión">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<ComboBox Width="170" Margin = "5" 
+												  ItemsSource="{Binding Path=ComboConnections.Items}" 
+												  DisplayMemberPath="Text" SelectedItem="{Binding Path=ComboConnections.SelectedItem}" />
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+						</GridView>
+					</ListView.View>
+				</ListView>
+			</Grid>
+		</GroupBox>
+		<GridSplitter Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Height="Auto" Width="3" Padding="3"
+									ResizeDirection="Columns" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="#FF566FDE" />
+		<Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="2*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<GroupBox Header="Scripts" Grid.Row="0" Grid.Column="0" Margin = "3" >
+				<TreeView ItemsSource="{Binding Path=ScriptsTreeViewModel.Children}">
+					<TreeView.Resources>
+						<!-- Plantilla de los nodos -->
+						<HierarchicalDataTemplate DataType="{x:Type ViewModel:TreeScriptNodeViewModel}" ItemsSource="{Binding Children}">
+							<StackPanel Orientation="Horizontal">
+								<CheckBox Margin="3" IsChecked="{Binding Path=IsChecked,UpdateSourceTrigger=PropertyChanged}" />
+								<Image Width="20" Height="20" Margin="3,0" Source="{Binding Path=Icon}" />
+								<TextBlock Text="{Binding Text}" FontWeight="{Binding IsBold,Converter={StaticResource BoolToFontWeightConverter}}"
+								   Foreground="{Binding Path=Foreground,Converter={StaticResource MVVMColorConverter}}" 
+								   VerticalAlignment="Center"/>
+							</StackPanel>
+						</HierarchicalDataTemplate>
+					</TreeView.Resources>
+					<TreeView.ItemContainerStyle>
+						<Style TargetType="{x:Type TreeViewItem}">
+							<Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}" />
+							<Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+							<Setter Property="Padding" Value="1" />
+							<!--
+					<Style.Resources>
+						<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{StaticResource HighlightTextColor}"/>
+						<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource HighlightBackgroundColor}"/>
+					</Style.Resources>
+					-->
+						</Style>
+					</TreeView.ItemContainerStyle>
+				</TreeView>
+			</GroupBox>
+			<GridSplitter Grid.Row="1" Grid.Column="0" Height="3" Width="Auto" Padding="3"
+									ResizeDirection="Rows" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="#FF566FDE" />
+			<GroupBox Header="Formatos de informes" Grid.Row="1" Grid.Column="0" Margin="3">
+				<ListView ItemsSource="{Binding Path=ReportOutputListViewModel.Items}" SelectedItem="{Binding Path=ReportOutputListViewModel.SelectedItem}" 
+						Margin = "3" >
+					<ListView.View>
+						<GridView>
+							<GridViewColumn Width="300" Header="Tipo">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<StackPanel Orientation="Horizontal">
+											<CheckBox IsChecked="{Binding Path=IsChecked,UpdateSourceTrigger=PropertyChanged}" Margin="5" VerticalAlignment="Center"/>
+											<TextBlock Text="{Binding Path=Text}" Margin="5" VerticalAlignment="Center"/>
+										</StackPanel>
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+						</GridView>
+					</ListView.View>
+				</ListView>
+			</GroupBox>
+		</Grid>
+		<GridSplitter Grid.Row="2" Grid.Column="0" Height="3" Width="Auto" Padding="3"
+									ResizeDirection="Rows" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="#FF566FDE" />
+		<GroupBox Header="Parámetros" Grid.Row="2" Grid.Column="0" Margin = "0,0,5,5" Padding="5">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<ToolBar IsHitTestVisible="True" Grid.Row="0" Grid.Column="0">
+					<Button Command="{Binding Path=ParametersListViewModel.NewItemCommand}" ToolTip="Nuevo">
+						<Image Source="/BauControls;component/Themes/Images/NewItem.png" />
+					</Button>
+					<Button Command="{Binding Path=ParametersListViewModel.DeleteItemCommand}" ToolTip="Borrar">
+						<Image Source="/BauControls;component/Themes/Images/Delete.png" />
+					</Button>
+				</ToolBar>
+				<ListView ItemsSource="{Binding Path=ParametersListViewModel.Items}" SelectedItem="{Binding Path=ParametersListViewModel.SelectedItem}" Grid.Row="1" Grid.Column="0" Margin = "3" >
+					<ListView.InputBindings>
+						<KeyBinding Key="Insert" Command="{Binding Path=ParametersListViewModel.NewItemCommand}" />
+						<KeyBinding Key="Del" Command="{Binding Path=ParametersListViewModel.DeleteItemCommand}" />
+					</ListView.InputBindings>
+					<ListView.View>
+						<GridView>
+							<GridViewColumn Width="200" Header="Clave">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBox Width="170" Margin="5" Text="{Binding Path=Key,UpdateSourceTrigger=PropertyChanged}" />
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+							<GridViewColumn Width="200" Header="Tipo">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<ComboBox Width="170" Margin = "5" 
+												  ItemsSource="{Binding Path=ComboTypes}" 
+												  DisplayMemberPath="Text" SelectedItem="{Binding Path=SelectedComboType}" />
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+							<GridViewColumn Width="200" Header="Valor">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBox Width="170" Margin="5" Text="{Binding Path=Value,UpdateSourceTrigger=PropertyChanged}" />
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+						</GridView>
+					</ListView.View>
+				</ListView>
+			</Grid>
+		</GroupBox>
+	</Grid>
+</UserControl>

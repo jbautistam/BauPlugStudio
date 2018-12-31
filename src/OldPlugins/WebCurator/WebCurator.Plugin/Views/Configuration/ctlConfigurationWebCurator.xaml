@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Bau.Libraries.WebCurator.Plugin.Views.Configuration.ctlConfigurationWebCurator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="183" d:DesignWidth="490"
+						 xmlns:my="clr-namespace:Bau.Controls.Files;assembly=BauControls" 
+						 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"  
+						 >
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Label Content="Directorio de datos:" Grid.Column="0" />
+		<my:PathSelect Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Margin = "3" 
+									 FontWeight="Normal" PathName="{Binding Path=PathLibrary}" />
+		<Label Content="Directorio compilación:" Grid.Row="1" Grid.Column="0" />
+		<my:PathSelect Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="3" Margin = "3" 
+									 FontWeight="Normal" PathName="{Binding Path=PathGenerate}" />
+		<Label Content="Minutos entre generación automática:" Grid.Row="2" Grid.Column="0" />
+		<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Value="{Binding Path=MinutesBetweenCompile}" Minimum="1" Maximum="500" FontWeight="Normal" Margin = "3" />
+		<CheckBox Grid.Row="2" Grid.Column="2" Content="Arrancar generación con la aplicación" IsChecked="{Binding Path=AutoStart}" Margin = "3" VerticalContentAlignment="Center" />
+	</Grid>
+</UserControl>

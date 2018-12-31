@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="Bau.Libraries.SourceEditor.Plugin.Views.ProjectsTreeControlView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				xmlns:ViewModel ="clr-namespace:Bau.Libraries.SourceEditor.ViewModel.Solutions.TreeExplorer;assembly=SourceEditor.ViewModel"
+				xmlns:local="clr-namespace:Bau.Libraries.SourceEditor.Plugin.Views.Converters"
+				xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock">
+	<Grid>
+		<TreeView x:Name="trvExplorer" SelectedItemChanged="trvExplorer_SelectedItemChanged"
+							MouseDoubleClick="trvExplorer_MouseDoubleClick" MouseDown="trvExplorer_MouseDown"
+							ContextMenu="{DynamicResource ResourceKey=mnuExplorer}" AllowDrop="True" 
+							PreviewMouseLeftButtonDown="trvExplorer_PreviewMouseLeftButtonDown"
+							PreviewMouseMove="trvExplorer_PreviewMouseMove" Drop="trvExplorer_Drop" 
+							DragEnter="trvExplorer_DragEnter" ContextMenuOpening="trvExplorer_ContextMenuOpening"
+							>
+			<TreeView.ItemContainerStyle>
+				<Style TargetType="{x:Type TreeViewItem}">
+					<Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+					<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+				</Style>
+			</TreeView.ItemContainerStyle>
+
+			<TreeView.InputBindings>
+				<KeyBinding Key="Enter" Command="{Binding Path=PropertiesCommand}" />
+				<KeyBinding Key="Del" Command="{Binding Path=DeleteCommand}" />
+			</TreeView.InputBindings>
+
+			<TreeView.Resources>
+				<local:FileIconConverter x:Key="FileIconConverter" />
+				<!-- Plantilla para las carpetas (SolutionFolderModel) -->
+				<HierarchicalDataTemplate DataType="{x:Type ViewModel:SolutionFolderNodeViewModel}" ItemsSource="{Binding Path=Children}">
+					<StackPanel Orientation="Horizontal">
+						<Image Width="16" Height="16" Margin="3,0" Source="/BauControls;component/Themes/Images/Folder.png" />
+						<TextBlock Text="{Binding Path=Text}" Foreground="Red" FontWeight="{Binding Path=FontWeightMode}" />
+					</StackPanel>
+				</HierarchicalDataTemplate>
+				<!-- Plantilla para los proyectos (ProjectModel) -->
+				<HierarchicalDataTemplate DataType="{x:Type ViewModel:ProjectNodeViewModel}" ItemsSource="{Binding Path=Children}">
+					<StackPanel Orientation="Horizontal">
+						<Image Width="16" Height="16" Margin="3,0" Source="/BauControls;component/Themes/Images/Project.png" />
+						<TextBlock Text="{Binding Path=Text}" Foreground="Navy" FontWeight="{Binding Path=FontWeightMode}" />
+					</StackPanel>
+				</HierarchicalDataTemplate>
+				<!-- Plantilla para los archivos (FileModel) -->
+				<HierarchicalDataTemplate DataType="{x:Type ViewModel:FileNodeViewModel}" ItemsSource="{Binding Path=Children}">
+					<StackPanel Orientation="Horizontal">
+						<Image Width="16" Height="16" Margin="3,0"
+									  Source="{Binding Path=File,Converter={StaticResource FileIconConverter}}" />
+						<TextBlock Text="{Binding Path=Text}" FontWeight="{Binding Path=FontWeightMode}" />
+					</StackPanel>
+				</HierarchicalDataTemplate>
+				<!-- Plantilla para los archivos (FileModel) -->
+				<HierarchicalDataTemplate DataType="{x:Type ViewModel:OwnerNodeViewModel}" ItemsSource="{Binding Path=Children}">
+					<StackPanel Orientation="Horizontal">
+						<Image Width="16" Height="16" Margin="3,0"
+									  Source="{Binding Path=OwnerChild,Converter={StaticResource FileIconConverter}}" />
+						<TextBlock Text="{Binding Path=Text}" FontWeight="{Binding Path=FontWeightMode}" />
+					</StackPanel>
+				</HierarchicalDataTemplate>
+
+				<!-- Menú -->
+				<ContextMenu x:Key="mnuExplorer">
+					<MenuItem Header="_Nuevo">
+						<MenuItem.Icon>
+							<Image Source="/BauControls;component/Themes/Images/NewItem.png" />
+						</MenuItem.Icon>
+						<MenuItem Header="_Carpeta" Command="{Binding Path=NewFolderCommand}">
+							<MenuItem.Icon>
+								<Image Source="/BauControls;component/Themes/Images/Folder.png" />
+							</MenuItem.Icon>
+						</MenuItem>
+						<MenuItem Header="_Archivo" Command="{Binding Path=NewFileCommand}">
+							<MenuItem.Icon>
+								<Image Source="/BauControls;component/Themes/Images/File.png" />
+							</MenuItem.Icon>
+						</MenuItem>
+						<MenuItem Header="Archivo _existente" Command="{Binding Path=AddExistingFileCommand}">
+							<MenuItem.Icon>
+								<Image Source="/BauControls;component/Themes/Images/Template.png" />
+							</MenuItem.Icon>
+						</MenuItem>
+						<Separator/>
+						<MenuItem Header="_Proyecto" Command="{Binding Path=NewProjectCommand}">
+							<MenuItem.Icon>
+								<Image Source="/BauControls;component/Themes/Images/Project.png" />
+							</MenuItem.Icon>
+						</MenuItem>
+						<MenuItem Header="Proyecto _existente" Command="{Binding Path=AddProjectCommand}">
+							<MenuItem.Icon>
+								<Image Source="/BauControls;component/Themes/Images/NewItem.png" />
+							</MenuItem.Icon>
+						</MenuItem>
+					</MenuItem>
+					<MenuItem Header="_Propiedades" Command="{Binding Path=PropertiesCommand}">
+						<MenuItem.Icon>
+							<Image Source="/BauControls;component/Themes/Images/Properties.gif" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<MenuItem Header="Cambiar _nombre" Command="{Binding Path=RenameCommand}">
+						<MenuItem.Icon>
+							<Image Source="/BauControls;component/Themes/Images/SaveAs.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator />
+					<MenuItem Header="Ver en el explorador" Command="{Binding SeeAtExplorerCommand}">
+						<MenuItem.Icon>
+							<Image Source="/BauControls;component/Themes/Images/Download.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<MenuItem Header="Abrir con aplicación asociada" Command="{Binding OpenWithWindowsCommand}">
+						<MenuItem.Icon>
+							<Image Source="/BauControls;component/Themes/Images/WebBrowser.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator />
+					<MenuItem Header="C_opiar" Command="{Binding Path=CopyCommand}">
+						<MenuItem.Icon>
+							<Image Source="/BauControls;component/Themes/Images/Copy.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<MenuItem Header="Co_rtar" Command="{Binding Path=CutCommand}">
+						<MenuItem.Icon>
+							<Image Source="/BauControls;component/Themes/Images/Cut.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<MenuItem Header="Pe_gar" Command="{Binding Path=PasteCommand}">
+						<MenuItem.Icon>
+							<Image Source="/BauControls;component/Themes/Images/Paste.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<MenuItem Header="Pegar _imagen" Command="{Binding Path=PasteImageCommand}">
+						<MenuItem.Icon>
+							<Image Source="/BauControls;component/Themes/Images/Image.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator />
+					<MenuItem Header="_Borrar" Command="{Binding Path=DeleteCommand}">
+						<MenuItem.Icon>
+							<Image Source="/BauControls;component/Themes/Images/Delete.png" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator x:Name="mnuOptOptions" />
+				</ContextMenu>
+			</TreeView.Resources>
+		</TreeView>
+	</Grid>
+</UserControl>
